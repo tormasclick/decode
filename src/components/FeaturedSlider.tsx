@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import { fetchFeaturedPosts } from '@/utils/fetchPosts';
-import Slider from 'react-slick'; // No need to import Settings explicitly
+import Slider, { Settings } from 'react-slick'; // Import Settings to type the settings object
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Image from 'next/image';
 
@@ -47,7 +47,7 @@ const FeaturedSlider: React.FC = () => {
     }
 
     // Settings for the Slider component
-    const settings = {
+    const settings: Settings = {  // Use the correct Settings type here
         dots: true,
         infinite: true,
         speed: 500,
