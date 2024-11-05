@@ -52,7 +52,7 @@ const FeaturedSlider: React.FC = () => {
         autoplay: true,
         autoplaySpeed: 3000,
         fade: true,
-        appendDots: (dots: React.ReactNode) => ( // Define the type for dots
+        appendDots: (dots: React.ReactNode) => (
             <div className="absolute bottom-4 left-0 right-0 flex justify-center z-10">
                 <ul className="flex space-x-2">{dots}</ul>
             </div>
