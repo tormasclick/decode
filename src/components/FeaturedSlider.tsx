@@ -27,7 +27,7 @@ interface Post {
     };
 }
 
-const FeaturedSlider = () => {
+const FeaturedSlider: React.FC = () => {
     const [posts, setPosts] = useState<Post[]>([]);
     const sliderRef = useRef<Slider | null>(null);
 
@@ -52,7 +52,7 @@ const FeaturedSlider = () => {
         autoplay: true,
         autoplaySpeed: 3000,
         fade: true,
-        appendDots: dots => (
+        appendDots: (dots: React.ReactNode) => ( // Define the type for dots
             <div className="absolute bottom-4 left-0 right-0 flex justify-center z-10">
                 <ul className="flex space-x-2">{dots}</ul>
             </div>
