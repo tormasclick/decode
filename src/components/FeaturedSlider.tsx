@@ -4,7 +4,7 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import { fetchFeaturedPosts } from '@/utils/fetchPosts';
-import Slider, { Settings } from 'react-slick';
+import Slider from 'react-slick';  // No need to import Settings explicitly
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Image from 'next/image';
 
@@ -43,7 +43,7 @@ const FeaturedSlider: React.FC = () => {
         return <p>No featured posts available.</p>;
     }
 
-    const settings: Settings = {
+    const settings = {
         dots: true,
         infinite: true,
         speed: 500,
