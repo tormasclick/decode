@@ -4,7 +4,7 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import { fetchFeaturedPosts } from '@/utils/fetchPosts';
-import Slider from 'react-slick';
+import Slider, { Settings } from 'react-slick';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Image from 'next/image';
 
@@ -43,7 +43,7 @@ const FeaturedSlider: React.FC = () => {
         return <p>No featured posts available.</p>;
     }
 
-    const settings = {
+    const settings: Settings = {
         dots: true,
         infinite: true,
         speed: 500,
@@ -78,8 +78,16 @@ const FeaturedSlider: React.FC = () => {
                         )}
                         <div className="absolute inset-0 flex flex-col justify-center items-center text-white bg-black bg-opacity-50">
                             <div className="border-4 border-[#33ff00] p-7">
-                                <h3 className="font-bold text-4xl mb-2" dangerouslySetInnerHTML={{ __html: post.title.rendered }}></h3>
-                                <p className="text-lg mb-4" dangerouslySetInnerHTML={{ __html: post.excerpt.rendered.slice(0, 100) }}></p>
+                                <h3
+                                    className="font-bold text-4xl mb-2"
+                                    dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+                                />
+                                <p
+                                    className="text-lg mb-4"
+                                    dangerouslySetInnerHTML={{
+                                        __html: post.excerpt.rendered.slice(0, 100),
+                                    }}
+                                />
                                 <a
                                     href={`/post/${post.slug}`}
                                     className="bg-[#33ff00] text-black py-2 px-4 rounded transition duration-300 hover:bg-[#2C324a] hover:text-white"
