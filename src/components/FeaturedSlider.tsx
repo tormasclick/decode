@@ -1,16 +1,15 @@
-// src/components/FeaturedSlider.tsx
-
 "use client";
 
 import React, { useEffect, useState, useRef } from 'react';
 import { fetchFeaturedPosts } from '@/utils/fetchPosts';
-import Slider from 'react-slick';  // No need to import Settings explicitly
+import Slider from 'react-slick'; // No need to import Settings explicitly
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Image from 'next/image';
 
-import 'slick-carousel/slick/slick.css'; 
+import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
+// Define the Post interface to strongly type the data from WordPress
 interface Post {
     id: number;
     title: {
@@ -27,10 +26,13 @@ interface Post {
     };
 }
 
+// FeaturedSlider Component
 const FeaturedSlider: React.FC = () => {
+    // State to hold the featured posts
     const [posts, setPosts] = useState<Post[]>([]);
     const sliderRef = useRef<Slider | null>(null);
 
+    // Load posts when the component mounts
     useEffect(() => {
         async function loadPosts() {
             const featuredPosts = await fetchFeaturedPosts();
@@ -39,11 +41,13 @@ const FeaturedSlider: React.FC = () => {
         loadPosts();
     }, []);
 
+    // Return a loading message if there are no posts
     if (posts.length === 0) {
         return <p>No featured posts available.</p>;
     }
 
-    const settings: ReactSlick.Settings = {  // Explicit typing for settings
+    // Settings for the Slider component
+    const settings = {
         dots: true,
         infinite: true,
         speed: 500,
