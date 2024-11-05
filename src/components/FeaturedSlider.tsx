@@ -43,7 +43,7 @@ const FeaturedSlider: React.FC = () => {
         return <p>No featured posts available.</p>;
     }
 
-    const settings = {
+    const settings: ReactSlick.Settings = {  // Explicit typing for settings
         dots: true,
         infinite: true,
         speed: 500,
@@ -64,7 +64,7 @@ const FeaturedSlider: React.FC = () => {
 
     return (
         <div className="relative w-full h-[75vh] overflow-hidden">
-            <Slider ref={sliderRef} {...settings}>
+            <Slider ref={sliderRef} {...settings}>  {/* Pass settings directly */}
                 {posts.map((post) => (
                     <div key={post.id} className="relative w-full h-full">
                         {post._embedded && post._embedded['wp:featuredmedia'] && (
