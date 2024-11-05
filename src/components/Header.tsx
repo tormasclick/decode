@@ -1,6 +1,6 @@
 "use client"; // Ensure this is a client component
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -10,16 +10,16 @@ import {
 import RegistrationForm from './RegistrationForm';
 
 const Header = () => {
-  const [isClient, setIsClient] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
   const toggleModal = () => setIsModalOpen(!isModalOpen);
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  // Close menu on mobile when a link is clicked
+  const handleLinkClick = () => {
+    if (isMenuOpen) toggleMenu();
+  };
 
   return (
     <>
@@ -52,31 +52,31 @@ const Header = () => {
             <ul className="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-6">
               <li className="flex items-center text-lg font-semibold transition-colors duration-300 hover:text-[#33ff00]">
                 <FaHome className="mr-2" />
-                <Link href="/">Home</Link>
+                <Link href="/" onClick={handleLinkClick}>Home</Link>
               </li>
               <li className="flex items-center text-lg font-semibold transition-colors duration-300 hover:text-[#33ff00]">
                 <FaInfoCircle className="mr-2" />
-                <Link href="/about">About</Link>
+                <Link href="/about" onClick={handleLinkClick}>About</Link>
               </li>
               <li className="flex items-center text-lg font-semibold transition-colors duration-300 hover:text-[#33ff00]">
                 <FaHandshake className="mr-2" />
-                <Link href="/consultation">Consultation</Link>
+                <Link href="/consultation" onClick={handleLinkClick}>Consultation</Link>
               </li>
               <li className="flex items-center text-lg font-semibold transition-colors duration-300 hover:text-[#33ff00]">
                 <FaUsers className="mr-2" />
-                <Link href="/social-connect">Social Connect</Link>
+                <Link href="/social-connect" onClick={handleLinkClick}>Social Connect</Link>
               </li>
               <li className="flex items-center text-lg font-semibold transition-colors duration-300 hover:text-[#33ff00]">
                 <FaBook className="mr-2" />
-                <Link href="/resources">Resources</Link>
+                <Link href="/resources" onClick={handleLinkClick}>Resources</Link>
               </li>
               <li className="flex items-center text-lg font-semibold transition-colors duration-300 hover:text-[#33ff00]">
                 <FaGlobe className="mr-2" />
-                <Link href="/impact">Impact</Link>
+                <Link href="/impact" onClick={handleLinkClick}>Impact</Link>
               </li>
               <li className="flex items-center text-lg font-semibold transition-colors duration-300 hover:text-[#33ff00]">
                 <FaCalendarAlt className="mr-2" />
-                <Link href="/events">Events</Link>
+                <Link href="/events" onClick={handleLinkClick}>Events</Link>
               </li>
               <li className="flex items-center">
                 <button

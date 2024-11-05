@@ -1,13 +1,19 @@
-// src/components/ConsultationSection.tsx
-
 "use client";
 
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { fetchSinglePost } from '@/utils/fetchSinglePost';
 
+interface Post {
+    id: number;
+    featured_image: string;
+    title: { rendered: string };
+    content: { rendered: string };
+}
+
 const ConsultationSection = () => {
-    const [posts, setPosts] = useState<any[]>([]);
-    const postIds = [34, 37, 40, 43]; // IDs for the posts
+    const [posts, setPosts] = useState<Post[]>([]);
+    const postIds = React.useMemo(() => [34, 37, 40, 43], []);
 
     useEffect(() => {
         const getPosts = async () => {
@@ -22,7 +28,6 @@ const ConsultationSection = () => {
 
     return (
         <div className="my-6 p-6 bg-white rounded-lg shadow-md">
-            
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {posts.map((post) => (
                     <div
@@ -31,9 +36,11 @@ const ConsultationSection = () => {
                     >
                         {post.featured_image && (
                             <div className="relative">
-                                <img
+                                <Image
                                     src={post.featured_image}
                                     alt={post.title.rendered}
+                                    width={400}
+                                    height={160}
                                     className="w-full h-40 object-cover"
                                 />
                                 <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-lg font-semibold p-4">

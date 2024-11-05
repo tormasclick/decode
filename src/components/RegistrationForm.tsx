@@ -2,7 +2,7 @@
 
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const RegistrationForm = () => {
     const [username, setUsername] = useState('');
@@ -78,7 +78,7 @@ const RegistrationForm = () => {
                 />
             </div>
             <button type="submit" className="bg-blue-500 text-white p-2 rounded">Register</button>
-            {message && <p className={`mt-2 ${response.ok ? 'text-green-500' : 'text-red-500'}`}>{message}</p>}
+            {message && <p className={`mt-2 ${message.includes('successful') ? 'text-green-500' : 'text-red-500'}`}>{message}</p>}
         </form>
     );
 };
