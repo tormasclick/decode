@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import { fetchFeaturedPosts } from '@/utils/fetchPosts';
-import Slider, { SliderProps } from 'react-slick'; // Ensure you're importing Slider and its types correctly
+import Slider from 'react-slick'; // Import Slider without Settings
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Image from 'next/image';
 
@@ -28,11 +28,9 @@ interface Post {
 
 // FeaturedSlider Component
 const FeaturedSlider: React.FC = () => {
-    // State to hold the featured posts
     const [posts, setPosts] = useState<Post[]>([]);
     const sliderRef = useRef<Slider | null>(null);
 
-    // Load posts when the component mounts
     useEffect(() => {
         async function loadPosts() {
             const featuredPosts = await fetchFeaturedPosts();
@@ -41,13 +39,12 @@ const FeaturedSlider: React.FC = () => {
         loadPosts();
     }, []);
 
-    // Return a loading message if there are no posts
     if (posts.length === 0) {
         return <p>No featured posts available.</p>;
     }
 
     // Settings for the Slider component
-    const settings: SliderProps = {
+    const settings = {
         dots: true,
         infinite: true,
         speed: 500,
@@ -68,8 +65,7 @@ const FeaturedSlider: React.FC = () => {
 
     return (
         <div className="relative w-full h-[75vh] overflow-hidden">
-            {/* Pass settings directly to Slider */}
-            <Slider ref={sliderRef} {...settings}>
+            <Slider ref={sliderRef} {...(settings as any)}> {/* Type assertion */}
                 {posts.map((post) => (
                     <div key={post.id} className="relative w-full h-full">
                         {post._embedded && post._embedded['wp:featuredmedia'] && (
