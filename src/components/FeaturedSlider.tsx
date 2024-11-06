@@ -2,14 +2,13 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import { fetchFeaturedPosts } from '@/utils/fetchPosts';
-import Slider, { Settings } from 'react-slick';
+import Slider from 'react-slick';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Image from 'next/image';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-// Define the Post interface to strongly type the data from WordPress
 interface Post {
     id: number;
     title: {
@@ -26,7 +25,6 @@ interface Post {
     };
 }
 
-// FeaturedSlider Component
 const FeaturedSlider: React.FC = () => {
     const [posts, setPosts] = useState<Post[]>([]);
     const sliderRef = useRef<Slider | null>(null);
@@ -43,8 +41,7 @@ const FeaturedSlider: React.FC = () => {
         return <p>No featured posts available.</p>;
     }
 
-    // Slider settings object using Settings type from react-slick
-    const settings: Settings = {
+    const settings = {
         dots: true,
         infinite: true,
         speed: 500,
@@ -53,7 +50,7 @@ const FeaturedSlider: React.FC = () => {
         autoplay: true,
         autoplaySpeed: 3000,
         fade: true,
-        appendDots: (dots) => (
+        appendDots: (dots: React.ReactNode) => (
             <div className="absolute bottom-4 left-0 right-0 flex justify-center z-10">
                 <ul className="flex space-x-2">{dots}</ul>
             </div>
@@ -61,7 +58,7 @@ const FeaturedSlider: React.FC = () => {
         customPaging: () => (
             <button className="dot bg-white rounded-full w-3 h-3" />
         ),
-    };
+    } as const; // Use "as const" to allow Slider to recognize settings as compatible props
 
     return (
         <div className="relative w-full h-[75vh] overflow-hidden">
