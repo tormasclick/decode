@@ -26,6 +26,20 @@ interface Post {
     };
 }
 
+// Slider settings interface
+interface SliderSettings {
+    dots: boolean;
+    infinite: boolean;
+    speed: number;
+    slidesToShow: number;
+    slidesToScroll: number;
+    autoplay: boolean;
+    autoplaySpeed: number;
+    fade: boolean;
+    appendDots: (dots: React.ReactNode) => React.ReactNode;
+    customPaging: () => React.ReactNode;
+}
+
 // FeaturedSlider Component
 const FeaturedSlider: React.FC = () => {
     const [posts, setPosts] = useState<Post[]>([]);
@@ -44,7 +58,7 @@ const FeaturedSlider: React.FC = () => {
     }
 
     // Settings for the Slider component
-    const settings = {
+    const settings: SliderSettings = {
         dots: true,
         infinite: true,
         speed: 500,
@@ -53,7 +67,7 @@ const FeaturedSlider: React.FC = () => {
         autoplay: true,
         autoplaySpeed: 3000,
         fade: true,
-        appendDots: (dots: React.ReactNode) => (
+        appendDots: (dots) => (
             <div className="absolute bottom-4 left-0 right-0 flex justify-center z-10">
                 <ul className="flex space-x-2">{dots}</ul>
             </div>
@@ -65,7 +79,7 @@ const FeaturedSlider: React.FC = () => {
 
     return (
         <div className="relative w-full h-[75vh] overflow-hidden">
-            <Slider ref={sliderRef} {...(settings as any)}> {/* Type assertion */}
+            <Slider ref={sliderRef} {...settings}> {/* Directly pass settings without type assertion */}
                 {posts.map((post) => (
                     <div key={post.id} className="relative w-full h-full">
                         {post._embedded && post._embedded['wp:featuredmedia'] && (
