@@ -1,4 +1,3 @@
-// Add this at the top of your FeaturedSlider.tsx file
 'use client';
 
 import React, { useEffect, useState } from 'react';
@@ -7,13 +6,29 @@ import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import Image from 'next/image';
 
+// Define a type for the post
+interface Post {
+    id: number;
+    title: {
+        rendered: string;
+    };
+    excerpt: {
+        rendered: string;
+    };
+    slug: string;
+    _embedded: {
+        'wp:featuredmedia': Array<{ source_url: string }>;
+    };
+}
+
 const FeaturedSlider: React.FC = () => {
-    const [posts, setPosts] = useState([]);
+    // Explicitly type the state as an array of Post objects
+    const [posts, setPosts] = useState<Post[]>([]);
 
     useEffect(() => {
         async function loadPosts() {
             const featuredPosts = await fetchFeaturedPosts();
-            setPosts(featuredPosts);
+            setPosts(featuredPosts); // Now this should match the Post[] type
         }
         loadPosts();
     }, []);
