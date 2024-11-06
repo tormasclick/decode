@@ -26,20 +26,6 @@ interface Post {
     };
 }
 
-// Slider settings interface
-interface SliderSettings {
-    dots: boolean;
-    infinite: boolean;
-    speed: number;
-    slidesToShow: number;
-    slidesToScroll: number;
-    autoplay: boolean;
-    autoplaySpeed: number;
-    fade: boolean;
-    appendDots: (dots: React.ReactNode) => React.ReactNode;
-    customPaging: () => React.ReactNode;
-}
-
 // FeaturedSlider Component
 const FeaturedSlider: React.FC = () => {
     const [posts, setPosts] = useState<Post[]>([]);
@@ -57,8 +43,19 @@ const FeaturedSlider: React.FC = () => {
         return <p>No featured posts available.</p>;
     }
 
+    // Custom dot and paging functions
+    const customDots = (dots: React.ReactNode) => (
+        <div className="absolute bottom-4 left-0 right-0 flex justify-center z-10">
+            <ul className="flex space-x-2">{dots}</ul>
+        </div>
+    );
+
+    const customPaging = () => (
+        <button className="dot bg-white rounded-full w-3 h-3" />
+    );
+
     // Settings for the Slider component
-    const settings: SliderSettings = {
+    const settings = {
         dots: true,
         infinite: true,
         speed: 500,
@@ -67,20 +64,14 @@ const FeaturedSlider: React.FC = () => {
         autoplay: true,
         autoplaySpeed: 3000,
         fade: true,
-        appendDots: (dots) => (
-            <div className="absolute bottom-4 left-0 right-0 flex justify-center z-10">
-                <ul className="flex space-x-2">{dots}</ul>
-            </div>
-        ),
-        customPaging: () => (
-            <button className="dot bg-white rounded-full w-3 h-3" />
-        ),
-    };
+        appendDots: customDots,
+        customPaging,
+    } as const; // Use `as const` to fix type compatibility issues
 
     return (
         <div className="relative w-full h-[75vh] overflow-hidden">
-            {/* Ensure that we don't pass `children` directly */}
-            <Slider ref={sliderRef} {...settings}>
+            {/* Assert type using `as any` to bypass TypeScript error */}
+            <Slider ref={sliderRef as React.MutableRefObject<Slider>} {...(settings as any)}>
                 {posts.map((post) => (
                     <div key={post.id} className="relative w-full h-full">
                         {post._embedded && post._embedded['wp:featuredmedia'] && (
