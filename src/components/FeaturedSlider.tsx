@@ -4,11 +4,21 @@ import React, { useEffect, useState } from 'react';
 import { fetchFeaturedPosts } from '@/utils/fetchPosts';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Image from 'next/image';
 
+// Define the type of each post
+interface Post {
+  id: number;
+  title: {
+    rendered: string;
+  };
+  _embedded?: {
+    'wp:featuredmedia'?: Array<{ source_url: string }>;
+  };
+}
+
 const FeaturedSlider: React.FC = () => {
-  const [posts, setPosts] = useState<any[]>([]);
+  const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
     // Fetch featured posts on component mount
