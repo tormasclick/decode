@@ -1,8 +1,9 @@
-// src/app/about/page.tsx
 "use client";
 
 import React, { useEffect, useState } from "react";
 import { fetchPageContent } from "../../utils/fetchPageContent";
+import Link from "next/link";  // Import Link from next/link
+import Image from "next/image"; // Import Image from next/image
 
 interface PageContent {
   title: { rendered: string };
@@ -41,7 +42,8 @@ const AboutPage: React.FC = () => {
         <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center">
           <h1 className="text-4xl font-bold text-white">{aboutUs.title.rendered}</h1>
           <nav className="text-white mt-2">
-            <a href="/" className="hover:text-gray-300">Home</a> / About Us
+            {/* Replace <a> with Link */}
+            <Link href="/" className="hover:text-gray-300">Home</Link> / About Us
           </nav>
         </div>
       </div>
@@ -65,7 +67,14 @@ const AboutPage: React.FC = () => {
         </div>
         {vision.featured_image && (
           <div className="md:w-1/2 p-4">
-            <img src={vision.featured_image} alt="Vision Image" className="w-full h-auto rounded-lg" />
+            {/* Use Image component for optimization */}
+            <Image
+              src={vision.featured_image}
+              alt="Vision Image"
+              width={500} // Provide width
+              height={300} // Provide height
+              className="w-full h-auto rounded-lg"
+            />
           </div>
         )}
       </section>
@@ -74,7 +83,14 @@ const AboutPage: React.FC = () => {
       <section className="py-8 px-4 bg-white flex flex-col md:flex-row items-center">
         {mission.featured_image && (
           <div className="md:w-1/2 p-4 order-2 md:order-1">
-            <img src={mission.featured_image} alt="Mission Image" className="w-full h-auto rounded-lg" />
+            {/* Use Image component for optimization */}
+            <Image
+              src={mission.featured_image}
+              alt="Mission Image"
+              width={500} // Provide width
+              height={300} // Provide height
+              className="w-full h-auto rounded-lg"
+            />
           </div>
         )}
         <div className="md:w-1/2 px-4 order-1 md:order-2">

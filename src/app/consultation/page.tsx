@@ -3,6 +3,7 @@
 
 import React, { useEffect, useState } from "react";
 import { fetchPageContent } from "../../utils/fetchPageContent";
+import Link from 'next/link'; // Import Link from Next.js
 
 interface PageContent {
   title: { rendered: string };
@@ -37,7 +38,7 @@ const ConsultationPage: React.FC = () => {
         <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center">
           <h1 className="text-4xl font-bold text-white">{consultation.title.rendered}</h1>
           <nav className="text-white mt-2">
-            <a href="/" className="hover:text-gray-300">Home</a> / Consultation
+            <Link href="/" className="hover:text-gray-300">Home</Link> / Consultation {/* Updated Link */}
           </nav>
         </div>
       </div>
