@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import { fetchFeaturedPosts } from '@/utils/fetchPosts';
-import Slider from 'react-slick'; // Import Slider directly
+import Slider, { SliderProps } from 'react-slick'; // Ensure you're importing Slider and its types correctly
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Image from 'next/image';
 
@@ -46,8 +46,8 @@ const FeaturedSlider: React.FC = () => {
         return <p>No featured posts available.</p>;
     }
 
-    // Settings for the Slider component (no need to import Settings anymore)
-    const settings = {
+    // Settings for the Slider component
+    const settings: SliderProps = {
         dots: true,
         infinite: true,
         speed: 500,
@@ -68,7 +68,8 @@ const FeaturedSlider: React.FC = () => {
 
     return (
         <div className="relative w-full h-[75vh] overflow-hidden">
-            <Slider ref={sliderRef} {...settings}>  {/* Pass settings directly */}
+            {/* Pass settings directly to Slider */}
+            <Slider ref={sliderRef} {...settings}>
                 {posts.map((post) => (
                     <div key={post.id} className="relative w-full h-full">
                         {post._embedded && post._embedded['wp:featuredmedia'] && (
