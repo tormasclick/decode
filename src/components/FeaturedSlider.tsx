@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import { fetchFeaturedPosts } from '@/utils/fetchPosts';
-import Slider from 'react-slick'; // Import Slider without Settings
+import Slider from 'react-slick'; // Ensure the Slider import is correct
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Image from 'next/image';
 
@@ -79,8 +79,8 @@ const FeaturedSlider: React.FC = () => {
 
     return (
         <div className="relative w-full h-[75vh] overflow-hidden">
-            {/* Use Slider with explicit children type */}
-            <Slider ref={sliderRef} {...settings}>
+            {/* Refactor Slider to avoid conflict with children */}
+            <Slider {...settings} ref={sliderRef}>
                 {posts.map((post) => (
                     <div key={post.id} className="relative w-full h-full">
                         {post._embedded && post._embedded['wp:featuredmedia'] && (
