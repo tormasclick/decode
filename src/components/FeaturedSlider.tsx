@@ -79,7 +79,8 @@ const FeaturedSlider: React.FC = () => {
 
     return (
         <div className="relative w-full h-[75vh] overflow-hidden">
-            <Slider ref={sliderRef} {...settings}> {/* Directly pass settings without type assertion */}
+            {/* Use Slider with explicit children type */}
+            <Slider ref={sliderRef} {...settings}>
                 {posts.map((post) => (
                     <div key={post.id} className="relative w-full h-full">
                         {post._embedded && post._embedded['wp:featuredmedia'] && (
