@@ -3,6 +3,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { fetchSliderPosts } from "../utils/fetchSliderPosts";
 
 interface Post {
@@ -56,9 +57,12 @@ const FeaturedSlider: React.FC = () => {
           }`}
         >
           {post.featuredImage ? (
-            <img
+            <Image
               src={post.featuredImage}
               alt={post.title}
+              layout="fill"
+              objectFit="cover"
+              priority={index === currentSlide} // Load the current slide image with priority
               className="w-full h-full object-cover"
             />
           ) : (
@@ -73,8 +77,8 @@ const FeaturedSlider: React.FC = () => {
               <p className="mt-2">
                 {post.content.length > 100 ? post.content.slice(0, 100) + "..." : post.content}
               </p>
-              <Link href={`/post/${post.id}`} className="text-yellow-400 mt-4 inline-block underline">
-                Read More
+              <Link href={`/post/${post.id}`} passHref>
+                <a className="text-yellow-400 mt-4 inline-block underline">Read More</a>
               </Link>
             </div>
           </div>
