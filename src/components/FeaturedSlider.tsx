@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { fetchSliderPosts } from "../utils/fetchSliderPosts";
+import Image from "next/image"; // Import next/image
 
 interface Post {
   id: number;
@@ -60,10 +61,13 @@ const FeaturedSlider: React.FC = () => {
           }`}
         >
           {post.featuredImage ? (
-            <img
+            <Image
               src={post.featuredImage}
               alt={post.title}
+              width={1920} // You can set the appropriate width
+              height={1080} // Set the appropriate height
               className="w-full h-full object-cover"
+              priority // Optional: ensures this image loads first
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center bg-gray-300">

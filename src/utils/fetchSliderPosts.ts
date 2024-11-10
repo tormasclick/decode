@@ -25,6 +25,7 @@ interface PostApiResponse {
         throw new Error('Failed to fetch posts');
       }
   
+      // Specify the type of the response data
       const posts: PostApiResponse[] = await response.json();
       console.log("Fetched posts:", posts); // Check the API response
   
