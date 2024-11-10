@@ -1,4 +1,6 @@
-"use client";
+// src/components/FeaturedSlider.tsx
+
+"use client";  // Add this directive to mark this file as a client component
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
