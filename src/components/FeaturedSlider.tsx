@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image"; // Import Image from next/image
 import { fetchSliderPosts } from "../utils/fetchSliderPosts";
 
 interface Post {
@@ -55,10 +56,11 @@ const FeaturedSlider: React.FC = () => {
           }`}
         >
           {post.featuredImage ? (
-            <img
+            <Image
               src={post.featuredImage}
               alt={post.title}
-              className="w-full h-full object-cover"
+              layout="fill" // Full container size
+              objectFit="cover" // Same as "object-cover" in CSS
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center bg-gray-300">
