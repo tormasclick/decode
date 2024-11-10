@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image"; // Import Image from next/image
 import { fetchSliderPosts } from "../utils/fetchSliderPosts";
 
 interface Post {
@@ -33,8 +32,13 @@ const FeaturedSlider: React.FC = () => {
     }
   }, [posts]);
 
+  const decodeHtml = (html: string) => {
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    return doc.documentElement.textContent || "";
+  };
+
   if (posts.length === 0) {
-    console.log("No posts available for the slider."); // Log if no posts found
+    console.log("No posts available for the slider.");
     return <div>Loading slider...</div>;
   }
 
@@ -56,11 +60,10 @@ const FeaturedSlider: React.FC = () => {
           }`}
         >
           {post.featuredImage ? (
-            <Image
+            <img
               src={post.featuredImage}
               alt={post.title}
-              layout="fill" // Full container size
-              objectFit="cover" // Same as "object-cover" in CSS
+              className="w-full h-full object-cover"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center bg-gray-300">
@@ -70,14 +73,14 @@ const FeaturedSlider: React.FC = () => {
           {/* Centered Caption */}
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="w-3/4 bg-black bg-opacity-50 text-white p-6 rounded-lg text-center">
-              <h2 className="text-2xl font-bold">{post.title}</h2>
+              <h2 className="text-2xl font-bold">{decodeHtml(post.title)}</h2>
               <p
                 className="mt-2"
                 dangerouslySetInnerHTML={{
                   __html:
                     post.content.length > 100
-                      ? post.content.slice(0, 100) + "..."
-                      : post.content,
+                      ? decodeHtml(post.content.slice(0, 100)) + "..."
+                      : decodeHtml(post.content),
                 }}
               ></p>
               <Link href={`/post/${post.id}`} className="text-yellow-400 mt-4 inline-block underline">
