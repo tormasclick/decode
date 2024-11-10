@@ -1,9 +1,7 @@
-// src/components/FeaturedSlider.tsx
 "use client";
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { fetchSliderPosts } from "../utils/fetchSliderPosts";
 
 interface Post {
@@ -57,12 +55,9 @@ const FeaturedSlider: React.FC = () => {
           }`}
         >
           {post.featuredImage ? (
-            <Image
+            <img
               src={post.featuredImage}
               alt={post.title}
-              layout="fill"
-              objectFit="cover"
-              priority={index === currentSlide} // Load the current slide image with priority
               className="w-full h-full object-cover"
             />
           ) : (
@@ -74,11 +69,17 @@ const FeaturedSlider: React.FC = () => {
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="w-3/4 bg-black bg-opacity-50 text-white p-6 rounded-lg text-center">
               <h2 className="text-2xl font-bold">{post.title}</h2>
-              <p className="mt-2">
-                {post.content.length > 100 ? post.content.slice(0, 100) + "..." : post.content}
-              </p>
-              <Link href={`/post/${post.id}`} passHref>
-                <a className="text-yellow-400 mt-4 inline-block underline">Read More</a>
+              <p
+                className="mt-2"
+                dangerouslySetInnerHTML={{
+                  __html:
+                    post.content.length > 100
+                      ? post.content.slice(0, 100) + "..."
+                      : post.content,
+                }}
+              ></p>
+              <Link href={`/post/${post.id}`} className="text-yellow-400 mt-4 inline-block underline">
+                Read More
               </Link>
             </div>
           </div>
