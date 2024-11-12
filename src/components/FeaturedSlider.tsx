@@ -1,11 +1,9 @@
-// src/components/FeaturedSlider.tsx
-
-"use client";  // Add this directive to mark this file as a client component
+"use client";  // Ensure this is a client component
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { fetchSliderPosts } from "../utils/fetchSliderPosts";
-import Image from "next/image"; // Import next/image
+import Image from "next/image";
 
 interface Post {
   id: number;
@@ -66,10 +64,10 @@ const FeaturedSlider: React.FC = () => {
             <Image
               src={post.featuredImage}
               alt={post.title}
-              width={1920} // You can set the appropriate width
-              height={1080} // Set the appropriate height
+              width={1920}
+              height={1080}
               className="w-full h-full object-cover"
-              priority // Optional: ensures this image loads first
+              priority
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center bg-gray-300">
@@ -79,7 +77,7 @@ const FeaturedSlider: React.FC = () => {
           {/* Centered Caption */}
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="w-3/4 bg-black bg-opacity-50 text-white p-6 rounded-lg text-center">
-              <h2 className="text-2xl font-bold">{decodeHtml(post.title)}</h2>
+              <h2 className="text-4xl font-bold">{decodeHtml(post.title)}</h2>
               <p
                 className="mt-2"
                 dangerouslySetInnerHTML={{
@@ -89,8 +87,10 @@ const FeaturedSlider: React.FC = () => {
                       : decodeHtml(post.content),
                 }}
               ></p>
-              <Link href={`/post/${post.id}`} className="text-yellow-400 mt-4 inline-block underline">
-                Read More
+              <Link href={`/post/${post.id}`}>
+                <button className="mt-4 px-6 py-2 bg-[#33ff00] text-blank rounded-full transition-colors duration-300 hover:bg-[#2C324a] hover:text-white">
+                  Read More
+                </button>
               </Link>
             </div>
           </div>
