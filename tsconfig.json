@@ -33,6 +33,6 @@
     ".next/types/**/*.ts",
     "src/utils/fetchFeaturedPosts",
     "src/@types"  // Ensure this line is included
-  ],
+, "../Decode/11page.tsx"  ],
   "exclude": ["node_modules"]
 }
