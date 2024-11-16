@@ -24,7 +24,9 @@ const EventDetailsPage: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       if (eventId) {
-        const eventData = await fetchEventById(eventId);
+        // Ensure eventId is a string
+        const id = Array.isArray(eventId) ? eventId[0] : eventId;
+        const eventData = await fetchEventById(id);
         setEvent(eventData);
         setLoading(false);
       }
