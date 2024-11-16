@@ -1,11 +1,9 @@
-// src/app/impact/page.tsx
-
 "use client";
 
 import React, { useEffect, useState } from "react";
 import { fetchPageContent } from "../../utils/fetchPageContent";
 import Link from 'next/link';
-import Image from 'next/image';
+import Image from 'next/image'; // Import Image component from next/image
 
 interface PageContent {
   title: { rendered: string };
@@ -28,15 +26,18 @@ const ImpactPage: React.FC = () => {
   return (
     <div className="impact-page">
       {/* Breadcrumb Header with Page Title */}
-      <div
-        className="breadcrumb-header relative flex items-center justify-center text-center"
-        style={{
-          backgroundImage: `url(${impact.featured_image})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          height: "300px",
-        }}
-      >
+      <div className="breadcrumb-header relative flex items-center justify-center text-center" style={{ height: "300px" }}>
+        {impact.featured_image && (
+          <div className="absolute inset-0">
+            <Image
+              src={impact.featured_image}
+              alt="Impact Featured Image"
+              layout="fill" // Makes the image fill the container
+              objectFit="cover" // Ensures the image covers the entire area
+              className="object-cover"
+            />
+          </div>
+        )}
         <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center">
           <h1 className="text-4xl font-bold text-white">{impact.title.rendered}</h1>
           <nav className="text-white mt-2">

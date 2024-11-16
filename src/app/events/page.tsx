@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link"; // Import Link from Next.js
 import { fetchEvents } from "../../utils/fetchEvents";
+import Image from "next/image"; // Import Image component from next/image
 
 interface Event {
   id: number;
@@ -59,13 +60,17 @@ const EventsPage: React.FC = () => {
               >
                 <div className="relative">
                   {event.image && (
-                    <img
-                      src={event.image.url}
-                      alt={event.title}
-                      className="w-full h-56 object-cover"
-                    />
+                    <div className="relative w-full h-56">
+                      <Image
+                        src={event.image.url}
+                        alt={event.title}
+                        layout="fill" // Make the image fill the container
+                        objectFit="cover" // Ensure the image covers the area
+                        className="object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-50"></div>
+                    </div>
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-50"></div>
                 </div>
 
                 <div className="p-4">

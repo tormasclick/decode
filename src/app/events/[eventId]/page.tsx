@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation"; // Use useParams for dynamic route handling
 import { fetchEventById } from "../../../utils/fetchEventById"; // Import fetch function
+import Image from "next/image"; // Import Image component from next/image
 
 interface EventDetails {
   id: number;
@@ -46,11 +47,16 @@ const EventDetailsPage: React.FC = () => {
       </header>
 
       {event.image && (
-        <img
-          src={event.image.url}
-          alt={event.title}
-          className="w-full h-auto mb-8"
-        />
+        <div className="relative w-full h-auto mb-8">
+          <Image
+            src={event.image.url}
+            alt={event.title}
+            layout="responsive"
+            width={1200} // Specify width and height to maintain aspect ratio
+            height={800}
+            className="object-cover"
+          />
+        </div>
       )}
 
       <section className="prose mx-auto max-w-3xl">

@@ -1,5 +1,5 @@
-// src/components/UpcomingEventsSection.tsx
 import React from 'react';
+import Link from 'next/link'; // Import Link from next/link
 
 const UpcomingEventsSection = () => {
     return (
@@ -9,12 +9,12 @@ const UpcomingEventsSection = () => {
                 Stay up-to-date with the latest events and workshops hosted by Decode Africa, designed to help entrepreneurs
                 grow their businesses and expand their network.
             </p>
-            <a
+            <Link
                 href="/events" // Link to the Events page
                 className="bg-purple-500 text-white py-2 px-6 rounded-lg transition duration-300 hover:bg-purple-400"
             >
                 View Events
-            </a>
+            </Link>
         </section>
     );
 };
