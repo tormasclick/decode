@@ -6,7 +6,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
-  FaHome, FaInfoCircle, FaHandshake, FaUsers, FaBook,
+  FaInfoCircle, FaHandshake, FaUsers, FaBook,
   FaGlobe, FaCalendarAlt, FaEnvelope, FaBars, FaTimes
 } from 'react-icons/fa';
 import RegistrationForm from './RegistrationForm';
@@ -53,10 +53,10 @@ const Header = () => {
             } lg:flex lg:items-center lg:space-x-6 bg-[#2C324a] lg:bg-transparent absolute lg:relative top-0 lg:top-auto left-0 w-full lg:w-auto p-4 lg:p-0`}
           >
             <ul className="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-6">
-            <li className="flex items-center text-lg font-semibold text-black transition-colors duration-300 hover:text-[#33ff00]">
-              <BiCompass className="mr-2" />  {/* Replace FaHome with BiCompass */}
-              <Link href="/discover" onClick={handleLinkClick}>Discover</Link>
-            </li>
+              <li className="flex items-center text-lg font-semibold text-black transition-colors duration-300 hover:text-[#33ff00]">
+                <BiCompass className="mr-2" /> {/* Replace FaHome with BiCompass */}
+                <Link href="/discover" onClick={handleLinkClick}>Discover</Link>
+              </li>
               <li className="flex items-center text-lg font-semibold text-black transition-colors duration-300 hover:text-[#33ff00]">
                 <FaHandshake className="mr-2" />
                 <Link href="/consultation" onClick={handleLinkClick}>Consultation</Link>
