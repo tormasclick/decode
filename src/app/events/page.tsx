@@ -14,6 +14,30 @@ interface Event {
   image: { url: string };
 }
 
+const addToCalendarLink = (event: Event, type: "google" | "ics") => {
+  if (type === "google") {
+    return `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
+      event.title
+    )}&dates=${new Date(event.start_date).toISOString().replace(/-|:|\.\d\d\d/g, "")}/${new Date(
+      event.end_date
+    ).toISOString().replace(/-|:|\.\d\d\d/g, "")}&details=${encodeURIComponent(event.description)}`;
+  } else if (type === "ics") {
+    const icsContent = `
+      BEGIN:VCALENDAR
+      VERSION:2.0
+      BEGIN:VEVENT
+      DTSTART:${new Date(event.start_date).toISOString().replace(/-|:|\.\d\d\d/g, "")}
+      DTEND:${new Date(event.end_date).toISOString().replace(/-|:|\.\d\d\d/g, "")}
+      SUMMARY:${event.title}
+      DESCRIPTION:${event.description}
+      END:VEVENT
+      END:VCALENDAR
+    `;
+    return `data:text/calendar;charset=utf8,${encodeURIComponent(icsContent)}`;
+  }
+  return "#";
+};
+
 const EventsPage: React.FC = () => {
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
@@ -35,7 +59,7 @@ const EventsPage: React.FC = () => {
       <div
         className="breadcrumb-header relative flex items-center justify-center text-center"
         style={{
-          backgroundImage: `url('/images/event1.jpg')`, // Replace with the appropriate header image
+          backgroundImage: `url('/images/event1.jpg')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           height: "300px",
@@ -64,8 +88,8 @@ const EventsPage: React.FC = () => {
                       <Image
                         src={event.image.url}
                         alt={event.title}
-                        layout="fill" // Make the image fill the container
-                        objectFit="cover" // Ensure the image covers the area
+                        layout="fill"
+                        objectFit="cover"
                         className="object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-50"></div>
@@ -85,13 +109,32 @@ const EventsPage: React.FC = () => {
                   />
                 </div>
 
-                <div className="flex justify-center pb-4">
+                <div className="flex flex-col items-center pb-4 space-y-4">
                   <Link
                     href={`/events/${event.id}`}
                     className="px-6 py-2 text-sm font-semibold text-white bg-gradient-to-r from-[#2C324a] to-[#33ff00] rounded-lg shadow-md hover:bg-[#33ff00] hover:text-[#2C324a] transition-all duration-300"
                   >
                     View Event Details
                   </Link>
+
+                  {/* Add to Calendar Links */}
+                  <div className="flex space-x-4">
+                    <a
+                      href={addToCalendarLink(event, "google")}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#2C324a] hover:text-[#33ff00] font-medium transition-all duration-300"
+                    >
+                      Add to Google Calendar
+                    </a>
+                    <a
+                      href={addToCalendarLink(event, "ics")}
+                      download={`${event.title}.ics`}
+                      className="text-[#2C324a] hover:text-[#33ff00] font-medium transition-all duration-300"
+                    >
+                      Download ICS
+                    </a>
+                  </div>
                 </div>
               </div>
             ))
