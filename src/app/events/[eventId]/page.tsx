@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import { fetchEventById } from "../../../utils/fetchEventById";
 import Link from "next/link";
 import { FaCalendarAlt, FaClock, FaMapMarkerAlt, FaUser, FaEnvelope, FaPhoneAlt, FaFacebook, FaTwitter, FaLinkedin } from "react-icons/fa";
+import Image from "next/image"; // Use Image for better optimization
 
 interface EventDetails {
   id: number;
@@ -65,15 +66,16 @@ const EventDetailsPage: React.FC = () => {
 
   return (
     <div className="event-details-page">
-      <div
-        className="breadcrumb-header relative flex items-center justify-center text-center"
-        style={{
-          backgroundImage: `url(${event.image?.url})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          height: "350px",
-        }}
-      >
+      <div className="breadcrumb-header relative flex items-center justify-center text-center" style={{ height: "350px" }}>
+        {event.image?.url && (
+          <Image
+            src={event.image.url}
+            alt={event.title}
+            layout="fill"
+            objectFit="cover"
+            className="absolute inset-0"
+          />
+        )}
         <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center">
           <h1 className="text-4xl font-bold text-white">{event.title}</h1>
           <nav className="text-white mt-2">
