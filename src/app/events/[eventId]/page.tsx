@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation"; // Use useParams for dynamic route handling
 import { fetchEventById } from "../../../utils/fetchEventById"; // Import fetch function
-import Image from "next/image"; // Import Image component from next/image
 import Link from "next/link";
 import { FaCalendarAlt, FaClock, FaMapMarkerAlt, FaUser, FaEnvelope, FaPhoneAlt } from "react-icons/fa"; // Import icons
 
@@ -91,15 +90,22 @@ const EventDetailsPage: React.FC = () => {
               <h2 className="text-2xl font-semibold mb-2">Map</h2>
               {/* Embedded Map */}
               {mapSrc ? (
-                <iframe
-                  src={mapSrc}
-                  width="100%"
-                  height="300"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  className="rounded-md shadow-md"
-                ></iframe>
+                <div className="relative" style={{ paddingBottom: "56.25%" }}>
+                  <iframe
+                    src={mapSrc}
+                    width="100%"
+                    height="100%"
+                    style={{
+                      border: 0,
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                    }}
+                    allowFullScreen
+                    loading="lazy"
+                    className="rounded-md shadow-md"
+                  ></iframe>
+                </div>
               ) : (
                 <p className="text-gray-500 italic">Map information not available.</p>
               )}
