@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { fetchEventById } from "../../../utils/fetchEventById";
 import Link from "next/link";
-import { FaCalendarAlt, FaClock, FaMapMarkerAlt, FaUser, FaEnvelope, FaPhoneAlt, FaFacebook, FaTwitter, FaLinkedin, FaShareAlt } from "react-icons/fa";
+import { FaCalendarAlt, FaClock, FaMapMarkerAlt, FaUser, FaEnvelope, FaPhoneAlt, FaFacebook, FaTwitter, FaLinkedin } from "react-icons/fa";
 
 interface EventDetails {
   id: number;
