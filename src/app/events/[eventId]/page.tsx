@@ -4,8 +4,18 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { fetchEventById } from "../../../utils/fetchEventById";
 import Link from "next/link";
-import { FaCalendarAlt, FaClock, FaMapMarkerAlt, FaUser, FaEnvelope, FaPhoneAlt, FaFacebook, FaTwitter, FaLinkedin } from "react-icons/fa";
-import Image from "next/image"; // Use Image for better optimization
+import {
+  FaCalendarAlt,
+  FaClock,
+  FaMapMarkerAlt,
+  FaUser,
+  FaEnvelope,
+  FaPhoneAlt,
+  FaFacebook,
+  FaTwitter,
+  FaLinkedin,
+} from "react-icons/fa";
+import Image from "next/image"; // Properly imported for image optimization
 
 interface EventDetails {
   id: number;
@@ -57,7 +67,10 @@ const EventDetailsPage: React.FC = () => {
         window.open(`https://twitter.com/intent/tweet?url=${url}&text=${title}`, "_blank");
         break;
       case "linkedin":
-        window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}&summary=${description}`, "_blank");
+        window.open(
+          `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}&summary=${description}`,
+          "_blank"
+        );
         break;
       default:
         break;
@@ -66,7 +79,11 @@ const EventDetailsPage: React.FC = () => {
 
   return (
     <div className="event-details-page">
-      <div className="breadcrumb-header relative flex items-center justify-center text-center" style={{ height: "350px" }}>
+      {/* Breadcrumb Header */}
+      <div
+        className="breadcrumb-header relative flex items-center justify-center text-center"
+        style={{ height: "350px" }}
+      >
         {event.image?.url && (
           <Image
             src={event.image.url}
@@ -91,7 +108,9 @@ const EventDetailsPage: React.FC = () => {
         </div>
       </div>
 
+      {/* Main Content */}
       <section className="py-8 px-4 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Left Section */}
         <div className="space-y-6">
           {event.venue && (
             <div>
@@ -140,6 +159,7 @@ const EventDetailsPage: React.FC = () => {
           </div>
         </div>
 
+        {/* Right Section */}
         <div className="space-y-8">
           <div className="space-y-4">
             <div className="flex items-center">
