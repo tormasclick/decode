@@ -79,7 +79,7 @@ const EventDetailsPage: React.FC = () => {
   return (
     <div className="event-details-page">
       {/* Breadcrumb Header */}
-      {/* <div
+      <div
         className="breadcrumb-header relative flex items-center justify-center text-center"
         style={{ height: "350px" }}
       >
@@ -102,7 +102,7 @@ const EventDetailsPage: React.FC = () => {
             / {event.title}
           </nav>
         </div>
-      </div> */}
+      </div>
 
       {/* Main Content */}
       <section className="py-8 px-4 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
