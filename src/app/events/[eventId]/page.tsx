@@ -22,7 +22,7 @@ interface EventDetails {
   description: string;
   start_date: string;
   end_date: string;
-  image?: { url: string };
+//   image?: { url: string };
   venue?: { venue: string; address: string };
   organizer?: { name: string; email: string; phone?: string };
   url: string;
