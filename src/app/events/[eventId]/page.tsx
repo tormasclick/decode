@@ -84,10 +84,10 @@ const EventDetailsPage: React.FC = () => {
         style={{ height: "350px" }}
       >
         {/* {event.image?.url && ( */}
-          <div
+          {/* <div
             className="absolute inset-0 bg-cover bg-center"
             style={{ backgroundImage: `url(${event.image.url})` }}
-          ></div>
+          ></div> */}
         {/* )} */}
         <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center">
           <h1 className="text-4xl font-bold text-white">{event.title}</h1>
