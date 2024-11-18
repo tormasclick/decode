@@ -15,7 +15,6 @@ import {
   FaTwitter,
   FaLinkedin,
 } from "react-icons/fa";
-import Image from "next/image"; // Properly imported for image optimization
 
 interface EventDetails {
   id: number;
@@ -85,13 +84,10 @@ const EventDetailsPage: React.FC = () => {
         style={{ height: "350px" }}
       >
         {event.image?.url && (
-          <Image
-            src={event.image.url}
-            alt={event.title}
-            layout="fill"
-            objectFit="cover"
-            className="absolute inset-0"
-          />
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${event.image.url})` }}
+          ></div>
         )}
         <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center">
           <h1 className="text-4xl font-bold text-white">{event.title}</h1>
