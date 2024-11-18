@@ -25,7 +25,7 @@ interface EventDetails {
   image?: { url: string };
   venue?: { venue: string; address: string };
   organizer?: { name: string; email: string; phone?: string };
-  url: string; // URL for sharing
+  url: string;
 }
 
 const EventDetailsPage: React.FC = () => {
