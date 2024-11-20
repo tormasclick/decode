@@ -1,9 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useParams } from "next/navigation"; // Use useParams for dynamic route handling
-import { fetchEventById } from "../../../utils/fetchEventById"; // Import fetch function
-import Image from "next/image"; // Import Image component from next/image
+import { useParams } from "next/navigation";
+import { fetchEventById } from "../../../utils/fetchEventById";
 import Link from "next/link";
 import {
   FaCalendarAlt,
@@ -12,7 +11,7 @@ import {
   FaUser,
   FaEnvelope,
   FaPhoneAlt,
-} from "react-icons/fa"; // Import icons
+} from "react-icons/fa";
 
 interface EventDetails {
   id: number;
@@ -43,7 +42,6 @@ const EventDetailsPage: React.FC = () => {
   }, [eventId]);
 
   if (loading) return <div>Loading event details...</div>;
-
   if (!event) return <div>Event not found.</div>;
 
   const mapSrc = event.venue?.address
@@ -97,22 +95,15 @@ const EventDetailsPage: React.FC = () => {
             <div>
               <h2 className="text-2xl font-semibold mb-2">Map</h2>
               {mapSrc ? (
-                <div className="relative" style={{ paddingBottom: "56.25%", height: 0 }}>
-                  <iframe
-                    src={mapSrc}
-                    width="100%"
-                    height="100%"
-                    style={{
-                      border: 0,
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                    }}
-                    allowFullScreen
-                    loading="lazy"
-                    className="rounded-md shadow-md"
-                  ></iframe>
-                </div>
+                <iframe
+                  src={mapSrc}
+                  width="100%"
+                  height="300"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  className="rounded-md shadow-md"
+                ></iframe>
               ) : (
                 <p className="text-gray-500 italic">Map information not available.</p>
               )}
@@ -144,8 +135,15 @@ const EventDetailsPage: React.FC = () => {
             <div className="flex items-center">
               <FaClock className="text-[#2C324a] mr-3" size={20} />
               <p className="text-gray-800 font-medium">
-                {new Date(event.start_date).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} -{" "}
-                {new Date(event.end_date).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+                {new Date(event.start_date).toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}{" "}
+                -{" "}
+                {new Date(event.end_date).toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
               </p>
             </div>
           </div>
