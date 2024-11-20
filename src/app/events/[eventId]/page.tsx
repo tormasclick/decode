@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { fetchEventById } from "../../../utils/fetchEventById";
 
-// Remove the import for Image if it's not used
+// Ensure this line is removed
 // import Image from 'next/image';
 
 interface EventDetails {
