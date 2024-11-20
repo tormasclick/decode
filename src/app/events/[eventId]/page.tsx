@@ -5,13 +5,16 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { fetchEventById } from "../../../utils/fetchEventById";
 
+// Remove the import for Image if it's not used
+// import Image from 'next/image';
+
 interface EventDetails {
   id: number;
   title: string;
 }
 
 const EventDetailsPage: React.FC = () => {
-  const { eventId } = useParams(); // Extract the event ID from the route
+  const { eventId } = useParams();
   const [event, setEvent] = useState<EventDetails | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -20,7 +23,7 @@ const EventDetailsPage: React.FC = () => {
     const fetchData = async () => {
       try {
         if (eventId) {
-          const id = Array.isArray(eventId) ? eventId[0] : eventId; // Handle dynamic route
+          const id = Array.isArray(eventId) ? eventId[0] : eventId;
           const eventData = await fetchEventById(id);
           setEvent(eventData);
         }
