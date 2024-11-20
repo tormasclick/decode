@@ -1,4 +1,4 @@
-"use client";
+"use client";  // Ensure this is at the very top
 
 import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
@@ -47,11 +47,10 @@ const EventDetailsPage: React.FC = () => {
 
   return (
     <div className="event-details-page">
-      {/* Header with Breadcrumb */}
       <div
         className="breadcrumb-header relative flex items-center justify-center text-center"
         style={{
-          backgroundImage: "url(/images/events-general.jpg)", // Static image path
+          backgroundImage: "url(/images/events-general.jpg)",
           backgroundSize: "cover",
           backgroundPosition: "center",
           height: "350px",
