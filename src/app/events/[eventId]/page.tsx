@@ -48,7 +48,15 @@ const EventDetailsPage: React.FC = () => {
   return (
     <div className="event-details-page">
       {/* Header with Breadcrumb */}
-      <div className="breadcrumb-header relative flex items-center justify-center text-center bg-gray-700 h-32">
+      <div
+        className="breadcrumb-header relative flex items-center justify-center text-center"
+        style={{
+          backgroundImage: "url(/images/events-general.jpg)", // Static image path
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          height: "350px",
+        }}
+      >
         <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center">
           <h1 className="text-4xl font-bold text-white">{event.title}</h1>
           <nav className="text-white mt-2">
