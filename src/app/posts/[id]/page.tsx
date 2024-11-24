@@ -1,5 +1,5 @@
-import { GetServerSideProps } from 'next';
 import { fetchSinglePost } from '@/utils/fetchSinglePost';
+import { notFound } from 'next/navigation';
 import Image from 'next/image';
 
 // Define the Post type
@@ -10,28 +10,13 @@ interface Post {
     featured_image: string;
 }
 
-// Define the type for `PostPageProps`
-interface PostPageProps {
-    post: Post;
-}
-
-// Refactor to use getServerSideProps
-export const getServerSideProps: GetServerSideProps<PostPageProps> = async ({ params }) => {
-    const postId = Number(params?.id); // Ensure the ID is a number
+// Fetch post directly within the component
+const PostPage = async ({ params }: { params: { id: string } }) => {
+    const postId = Number(params.id); // Ensure the ID is a number
     const post = await fetchSinglePost(postId);
 
     if (!post) {
-        return { notFound: true }; // Handle the case where the post doesn't exist
-    }
-
-    return {
-        props: { post }, // Return the post as props
-    };
-};
-
-const PostPage = ({ post }: PostPageProps) => {
-    if (!post) {
-        return <div>Post not found</div>;
+        notFound(); // This will display the 404 page if no post is found
     }
 
     return (
