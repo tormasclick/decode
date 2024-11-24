@@ -1,0 +1,15 @@
+/* Slider Arrow Button Styles */
+.slider-button {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    color: white !important;
+    border-radius: 50% !important;
+  }
+  
+  .slider-button:focus {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+  

@@ -35,16 +35,17 @@ const AboutUs: React.FC = () => {
               loop
               muted
               playsInline
+              preload="auto"
               className="w-full h-full object-cover"
-              poster="/images/video-placeholder.jpg" // Fallback image while loading
+              poster="/images/about2.jpg" // Fallback image while loading
             >
               <source
                 src="/videos/6608212-uhd_2160_4096_24fps.webm"
-                type="video/mp4"
+                type="video/webm"
               />
               <source
-                src="/videos/6608212-uhd_2160_4096_24fps.webm"
-                type="video/webm"
+                src="/videos/6608212-uhd_2160_4096_24fps.mp4"
+                type="video/mp4"
               />
               {/* Fallback message for unsupported browsers */}
               Your browser does not support the video tag.

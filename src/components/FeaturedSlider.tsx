@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { fetchSliderPosts } from "../utils/fetchSliderPosts";
 import Image from "next/image";
+import styles from './FeaturedSlider.module.css';  // Import the CSS module
 
 interface Post {
   id: number;
@@ -100,13 +101,7 @@ const FeaturedSlider: React.FC = () => {
       {/* Left Arrow */}
       <button
         onClick={handlePrevSlide}
-        className="absolute top-1/2 left-2 md:left-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-1 md:p-2 focus:outline-none"
-        style={{ 
-          backgroundColor: 'rgba(0, 0, 0, 0.5)', 
-          borderColor: 'transparent',
-          boxShadow: 'none', // Remove the default focus ring
-        }}
-        onFocus={(e) => e.target.style.boxShadow = 'none'}
+        className={`absolute top-1/2 left-2 md:left-4 transform -translate-y-1/2 p-1 md:p-2 ${styles['slider-button']}`}
       >
         &#9664;
       </button>
@@ -114,13 +109,7 @@ const FeaturedSlider: React.FC = () => {
       {/* Right Arrow */}
       <button
         onClick={handleNextSlide}
-        className="absolute top-1/2 right-2 md:right-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-1 md:p-2 focus:outline-none"
-        style={{ 
-          backgroundColor: 'rgba(0, 0, 0, 0.5)', 
-          borderColor: 'transparent',
-          boxShadow: 'none', // Remove the default focus ring
-        }}
-        onFocus={(e) => e.target.style.boxShadow = 'none'}
+        className={`absolute top-1/2 right-2 md:right-4 transform -translate-y-1/2 p-1 md:p-2 ${styles['slider-button']}`}
       >
         &#9654;
       </button>
