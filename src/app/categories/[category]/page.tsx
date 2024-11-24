@@ -6,6 +6,13 @@ import { fetchPostsByCategory } from "../../../utils/fetchPostsByCategory";
 import Image from "next/image";
 import Link from "next/link";
 
+interface Post {
+    id: number;
+    title: { rendered: string };
+    excerpt: { rendered: string };
+    featured_image?: string;
+}
+
 const categories = {
     trending: 7,
     business: 8,
@@ -36,7 +43,7 @@ const categories = {
 
 const CategoryPage: React.FC = () => {
     const { category } = useParams();
-    const [posts, setPosts] = useState<any[]>([]);
+    const [posts, setPosts] = useState<Post[]>([]);
 
     useEffect(() => {
         if (category) {
@@ -48,7 +55,7 @@ const CategoryPage: React.FC = () => {
     return (
         <div>
             {/* Full Width Banner Image */}
-            <div className="relative w-screen h-64 mb-8">
+            <div className="relative w-full h-64 mb-8">
                 <Image
                     src="/images/discover-banner.jpg"
                     alt={`${category} banner`}
