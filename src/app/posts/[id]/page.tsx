@@ -2,14 +2,6 @@ import { fetchSinglePost } from '@/utils/fetchSinglePost';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 
-// Define the Post type
-interface Post {
-    id: number;
-    title: { rendered: string };
-    content: { rendered: string };
-    featured_image: string;
-}
-
 // Fetch post directly within the component
 const PostPage = async ({ params }: { params: { id: string } }) => {
     const postId = Number(params.id); // Ensure the ID is a number
