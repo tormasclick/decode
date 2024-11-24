@@ -9,12 +9,9 @@ interface Post {
     featured_image: string;
 }
 
-type PostPageProps = {
-    params: { id: string };  // Correctly define the params type
-};
-
-// Update this to be an async function that handles fetching based on the params
-const PostPage = async ({ params }: PostPageProps) => {
+// The component accepts params directly, no need to wrap it in a Promise or await
+const PostPage = async ({ params }: { params: { id: string } }) => {
+    // Make sure the params are handled correctly (not as a promise)
     const post: Post | null = await fetchSinglePost(Number(params.id)); // Fetch post data by ID
 
     if (!post) {
