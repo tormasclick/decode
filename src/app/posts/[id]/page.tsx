@@ -1,7 +1,7 @@
-import { fetchSinglePost } from '@/utils/fetchSinglePost'; // Ensure this utility function is correctly defined
+import { fetchSinglePost } from '@/utils/fetchSinglePost'; // Make sure this function is properly defined
 import Image from 'next/image';
 
-// Type definition for the post
+// Define the Post type
 interface Post {
     id: number;
     title: { rendered: string };
@@ -9,14 +9,16 @@ interface Post {
     featured_image: string;
 }
 
-// Define the types for props that the page will accept
+// Update the PageProps to be specific to Next.js's routing system
 interface PostPageProps {
-    params: { id: string }; // Params will always be passed as an object
+    params: {
+        id: string;
+    };
 }
 
 const PostPage = async ({ params }: PostPageProps) => {
-    const postId = Number(params.id); // Ensure the ID is a number
-    const post: Post | null = await fetchSinglePost(postId); // Fetch post data using the ID
+    const postId = Number(params.id); // Ensure the ID is converted to a number for backend queries
+    const post: Post | null = await fetchSinglePost(postId); // Fetch the post by ID
 
     if (!post) {
         return <div className="text-center">Post not found</div>;
