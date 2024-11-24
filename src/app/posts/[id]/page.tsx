@@ -1,6 +1,7 @@
 // src/app/posts/[id]/page.tsx
 import React from 'react';
 import { fetchSinglePost } from '@/utils/fetchSinglePost';
+import Image from 'next/image'; // Import the Image component
 
 interface Post {
     id: number;
@@ -9,15 +10,12 @@ interface Post {
     featured_image: string;
 }
 
-interface PostPageProps {
-    params: {
-        id: string;
-    };
-}
+// Fetch the post data using async function inside the component
+const PostPage = async ({ params }: { params: { id: string } }) => {
+    // Await params.id before using it
+    const { id } = await params; // Wait for params to be available
 
-const PostPage = async ({ params }: PostPageProps) => {
-    // Fetch the post data directly within the component
-    const post: Post | null = await fetchSinglePost(Number(params.id)); // Explicitly use the Post type here
+    const post: Post | null = await fetchSinglePost(Number(id)); // Fetch post data by ID
 
     if (!post) {
         return <div className="text-center">Post not found</div>;
@@ -27,11 +25,14 @@ const PostPage = async ({ params }: PostPageProps) => {
         <div className="max-w-4xl mx-auto p-6">
             <h1 className="text-3xl font-semibold mb-4">{post.title.rendered}</h1>
             {post.featured_image && (
-                <img
-                    src={post.featured_image}
-                    alt={post.title.rendered}
-                    className="w-full h-80 object-cover mb-6"
-                />
+                <div className="relative w-full h-80 mb-6">
+                    <Image
+                        src={post.featured_image}
+                        alt={post.title.rendered}
+                        layout="fill"
+                        objectFit="cover" // Use objectFit to ensure the image covers the container
+                    />
+                </div>
             )}
             <div
                 className="post-content"
