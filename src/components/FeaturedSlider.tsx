@@ -100,8 +100,13 @@ const FeaturedSlider: React.FC = () => {
       {/* Left Arrow */}
       <button
         onClick={handlePrevSlide}
-        className="absolute top-1/2 left-2 md:left-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-1 md:p-2 focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-50"
-        style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', borderColor: 'transparent' }}
+        className="absolute top-1/2 left-2 md:left-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-1 md:p-2"
+        style={{ 
+          backgroundColor: 'rgba(0, 0, 0, 0.5)', 
+          borderColor: 'transparent',
+          outline: 'none' // Remove default outline
+        }}
+        onFocus={(e) => e.target.style.boxShadow = 'none'} // Remove focus ring
       >
         &#9664;
       </button>
@@ -109,8 +114,13 @@ const FeaturedSlider: React.FC = () => {
       {/* Right Arrow */}
       <button
         onClick={handleNextSlide}
-        className="absolute top-1/2 right-2 md:right-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-1 md:p-2 focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-50"
-        style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', borderColor: 'transparent' }}
+        className="absolute top-1/2 right-2 md:right-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-1 md:p-2"
+        style={{ 
+          backgroundColor: 'rgba(0, 0, 0, 0.5)', 
+          borderColor: 'transparent',
+          outline: 'none' // Remove default outline
+        }}
+        onFocus={(e) => e.target.style.boxShadow = 'none'} // Remove focus ring
       >
         &#9654;
       </button>
