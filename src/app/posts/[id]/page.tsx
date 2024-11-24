@@ -17,7 +17,7 @@ interface PostPageProps {
 
 const PostPage = async ({ params }: PostPageProps) => {
     // Fetch the post data directly within the component
-    const post = await fetchSinglePost(Number(params.id));
+    const post: Post | null = await fetchSinglePost(Number(params.id)); // Explicitly use the Post type here
 
     if (!post) {
         return <div className="text-center">Post not found</div>;
