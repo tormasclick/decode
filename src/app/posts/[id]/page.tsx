@@ -1,6 +1,7 @@
-import { fetchSinglePost } from '@/utils/fetchSinglePost'; // Make sure this utility is correctly defined
+import { fetchSinglePost } from '@/utils/fetchSinglePost'; // Ensure this utility function is correctly defined
 import Image from 'next/image';
 
+// Type definition for the post
 interface Post {
     id: number;
     title: { rendered: string };
@@ -8,10 +9,14 @@ interface Post {
     featured_image: string;
 }
 
-// Async function to fetch the post data, using params directly
-const PostPage = async ({ params }: { params: { id: string } }) => {
-    const postId = Number(params.id); // Convert the id to a number for the API call
-    const post: Post | null = await fetchSinglePost(postId); // Fetch the post data by ID
+// Define the types for props that the page will accept
+interface PostPageProps {
+    params: { id: string }; // Params will always be passed as an object
+}
+
+const PostPage = async ({ params }: PostPageProps) => {
+    const postId = Number(params.id); // Ensure the ID is a number
+    const post: Post | null = await fetchSinglePost(postId); // Fetch post data using the ID
 
     if (!post) {
         return <div className="text-center">Post not found</div>;
