@@ -12,7 +12,7 @@ interface Post {
     content: { rendered: string };
 }
 
-const ConsultationSection = () => {
+const ConsultationSection: React.FC = () => {
     const [posts, setPosts] = useState<Post[]>([]);
     const postIds = React.useMemo(() => [34, 37, 40, 43], []);
 
@@ -32,13 +32,10 @@ const ConsultationSection = () => {
             <h2 className="text-2xl font-semibold text-center mb-6">
                 Latest Articles From Consultation Desk
             </h2>
-
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {posts.map((post) => (
                     <Link key={post.id} href={`/posts/${post.id}`} passHref>
-                        <div
-                            className="bg-gray-50 rounded-lg shadow overflow-hidden transform transition-transform duration-300 hover:scale-105 cursor-pointer"
-                        >
+                        <div className="bg-gray-50 rounded-lg shadow overflow-hidden transform transition-transform duration-300 hover:scale-105 cursor-pointer">
                             {post.featured_image && (
                                 <div className="relative">
                                     <Image

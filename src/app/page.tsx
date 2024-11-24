@@ -4,17 +4,13 @@ import ConsultationSection from '@/components/ConsultationSection';
 import AboutUs from '@/components/AboutUs';
 import Impact from '@/components/Impact';
 
-const HomePage = () => {
+const HomePage: React.FC = () => {
     return (
-        <div className="text-center m-0 p-0"> {/* Remove any default margin and padding */}
-            {/* Display the FeaturedSlider component */}
+        <div className="text-center m-0 p-0">
             <FeaturedSlider />
             <AboutUs />
             <Impact />
-            
-            {/* Display Consultation Section */}
             <ConsultationSection />
-            
         </div>
     );
 };

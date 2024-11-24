@@ -1,40 +1,47 @@
-// import { fetchSinglePost } from '@/utils/fetchSinglePost';
-// import { notFound } from 'next/navigation';
-// import Image from 'next/image';
+"use client";
 
-// // Define the type explicitly for the dynamic route params
-// interface PostPageParams {
-//   id: string;
-// }
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'next/navigation';
+import { fetchSinglePost } from '@/utils/fetchSinglePost';
 
-// const PostPage = async ({ params }: { params: PostPageParams }) => {
-//   const postId = Number(params.id); // Convert `id` if necessary
-//   const post = await fetchSinglePost(postId);
+interface Post {
+    id: number;
+    featured_image: string;
+    title: { rendered: string };
+    content: { rendered: string };
+}
 
-//   if (!post) {
-//     notFound();
-//   }
+const PostPage: React.FC = () => {
+    const { id } = useParams();
+    const [post, setPost] = useState<Post | null>(null);
+    const [loading, setLoading] = useState(true);
 
-//   return (
-//     <div className="max-w-4xl mx-auto p-6">
-//       <h1 className="text-3xl font-semibold mb-4">{post.title.rendered}</h1>
-//       {post.featured_image && (
-//         <div className="relative w-full h-80 mb-6">
-//           <Image
-//             src={post.featured_image}
-//             alt={post.title.rendered}
-//             width={800}
-//             height={320}
-//             className="w-full h-full object-cover"
-//           />
-//         </div>
-//       )}
-//       <div
-//         className="post-content"
-//         dangerouslySetInnerHTML={{ __html: post.content.rendered }}
-//       />
-//     </div>
-//   );
-// };
+    useEffect(() => {
+        const getPost = async () => {
+            if (id) {
+                const fetchedPost = await fetchSinglePost(Number(id));
+                setPost(fetchedPost);
+                setLoading(false);
+            }
+        };
 
-// export default PostPage;
+        getPost();
+    }, [id]);
+
+    if (loading) return <div className="text-center">Loading...</div>;
+    if (!post) return <div className="text-center">Post not found</div>;
+
+    return (
+        <div className="my-6 p-6 bg-white rounded-lg shadow-md">
+            <h1 className="text-3xl font-bold mb-4">{post.title.rendered}</h1>
+            {post.featured_image && (
+                <div className="mb-4">
+                    <img src={post.featured_image} alt={post.title.rendered} className="w-full h-auto rounded-lg shadow-md" />
+                </div>
+            )}
+            <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
+        </div>
+    );
+};
+
+export default PostPage;
