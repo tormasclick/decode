@@ -2,7 +2,7 @@ import { fetchSinglePost } from '@/utils/fetchSinglePost';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 
-// Fetch post directly within the component
+// Refactor to use the correct route parameter structure
 const PostPage = async ({ params }: { params: { id: string } }) => {
     const postId = Number(params.id); // Ensure the ID is a number
     const post = await fetchSinglePost(postId);
