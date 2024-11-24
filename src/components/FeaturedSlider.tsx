@@ -76,7 +76,7 @@ const FeaturedSlider: React.FC = () => {
           )}
           {/* Centered Caption with Border and Increased Transparency */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-3/4 md:w-3/4 lg:w-3/4 bg-black bg-opacity-75 text-white p-4 md:p-6 text-center border-4" style={{ borderColor: '#33ff00', borderRadius: '0' }}>
+            <div className="w-3/4 md:w-3/4 lg:w-3/4 bg-black bg-opacity-40 text-white p-4 md:p-6 text-center border-4" style={{ borderColor: '#33ff00', borderRadius: '0' }}>
               <h2 className="text-2xl md:text-4xl font-bold">{decodeHtml(post.title)}</h2>
               <p
                 className="mt-2 text-sm md:text-base"
