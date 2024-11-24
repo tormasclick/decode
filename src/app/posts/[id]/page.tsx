@@ -1,5 +1,4 @@
-import React from 'react';
-import { fetchSinglePost } from '@/utils/fetchSinglePost';
+import { fetchSinglePost } from '@/utils/fetchSinglePost'; // Make sure this utility is correctly defined
 import Image from 'next/image';
 
 interface Post {
@@ -9,10 +8,10 @@ interface Post {
     featured_image: string;
 }
 
-// The component accepts params directly, no need to wrap it in a Promise or await
+// Async function to fetch the post data, using params directly
 const PostPage = async ({ params }: { params: { id: string } }) => {
-    // Make sure the params are handled correctly (not as a promise)
-    const post: Post | null = await fetchSinglePost(Number(params.id)); // Fetch post data by ID
+    const postId = Number(params.id); // Convert the id to a number for the API call
+    const post: Post | null = await fetchSinglePost(postId); // Fetch the post data by ID
 
     if (!post) {
         return <div className="text-center">Post not found</div>;
