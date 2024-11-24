@@ -74,9 +74,9 @@ const FeaturedSlider: React.FC = () => {
               <p className="text-xl text-gray-700">No Image Available</p>
             </div>
           )}
-          {/* Centered Caption */}
+          {/* Centered Caption with Border and Increased Transparency */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-3/4 bg-black bg-opacity-50 text-white p-6 rounded-lg text-center">
+            <div className="w-3/4 bg-black bg-opacity-40 text-white p-6 text-center border-4" style={{ borderColor: '#33ff00', borderRadius: '0' }}>
               <h2 className="text-4xl font-bold">{decodeHtml(post.title)}</h2>
               <p
                 className="mt-2"
@@ -87,7 +87,7 @@ const FeaturedSlider: React.FC = () => {
                       : decodeHtml(post.content),
                 }}
               ></p>
-              <Link href={`/post/${post.id}`}>
+              <Link href={`/posts/${post.id}`}>
                 <button className="mt-4 px-6 py-2 bg-[#33ff00] text-blank rounded-full transition-colors duration-300 hover:bg-[#2C324a] hover:text-white">
                   Read More
                 </button>
