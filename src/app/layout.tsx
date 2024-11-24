@@ -2,7 +2,8 @@
 
 import { ReactNode } from "react";
 import Header from "../components/Header";
-import Footer from "../components/Footer"; // Import the Footer component
+import Footer from "../components/Footer";
+import WhatsAppWidget from "../components/WhatsAppWidget"; // Import the WhatsApp Widget
 import "./globals.css";
 
 interface RootLayoutProps {
@@ -14,8 +15,9 @@ const RootLayout = ({ children }: RootLayoutProps) => {
     <html lang="en">
       <body>
         <Header />
-        <main>{children}</main> {/* Wrap children in a main tag for semantic structure */}
-        <Footer /> {/* Add the Footer component here */}
+        <main>{children}</main>
+        <Footer />
+        <WhatsAppWidget /> {/* Add the WhatsApp Widget here */}
       </body>
     </html>
   );
