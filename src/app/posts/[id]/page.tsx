@@ -10,10 +10,9 @@ interface Post {
     featured_image: string;
 }
 
-// Fetch the post data using async function inside the component
 const PostPage = async ({ params }: { params: { id: string } }) => {
-    // Await params.id before using it
-    const { id } = await params; // Wait for params to be available
+    // Await params to get the resolved value
+    const { id } = await params; // Await the params to resolve its values
 
     const post: Post | null = await fetchSinglePost(Number(id)); // Fetch post data by ID
 
@@ -29,8 +28,9 @@ const PostPage = async ({ params }: { params: { id: string } }) => {
                     <Image
                         src={post.featured_image}
                         alt={post.title.rendered}
-                        layout="fill"
-                        objectFit="cover" // Use objectFit to ensure the image covers the container
+                        width={800}
+                        height={320}
+                        className="w-full h-full object-cover"
                     />
                 </div>
             )}
