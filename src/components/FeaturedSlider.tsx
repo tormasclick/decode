@@ -76,10 +76,10 @@ const FeaturedSlider: React.FC = () => {
           )}
           {/* Centered Caption with Border and Increased Transparency */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-3/4 bg-black bg-opacity-40 text-white p-6 text-center border-4" style={{ borderColor: '#33ff00', borderRadius: '0' }}>
-              <h2 className="text-4xl font-bold">{decodeHtml(post.title)}</h2>
+            <div className="w-3/4 md:w-3/4 lg:w-3/4 bg-black bg-opacity-75 text-white p-4 md:p-6 text-center border-4" style={{ borderColor: '#33ff00', borderRadius: '0' }}>
+              <h2 className="text-2xl md:text-4xl font-bold">{decodeHtml(post.title)}</h2>
               <p
-                className="mt-2"
+                className="mt-2 text-sm md:text-base"
                 dangerouslySetInnerHTML={{
                   __html:
                     post.content.length > 100
@@ -88,7 +88,7 @@ const FeaturedSlider: React.FC = () => {
                 }}
               ></p>
               <Link href={`/posts/${post.id}`}>
-                <button className="mt-4 px-6 py-2 bg-[#33ff00] text-blank rounded-full transition-colors duration-300 hover:bg-[#2C324a] hover:text-white">
+                <button className="mt-4 px-4 py-2 md:px-6 md:py-2 bg-[#33ff00] text-blank rounded-full transition-colors duration-300 hover:bg-[#2C324a] hover:text-white">
                   Read More
                 </button>
               </Link>
@@ -100,7 +100,7 @@ const FeaturedSlider: React.FC = () => {
       {/* Left Arrow */}
       <button
         onClick={handlePrevSlide}
-        className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-2"
+        className="absolute top-1/2 left-2 md:left-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-1 md:p-2"
       >
         &#9664;
       </button>
@@ -108,7 +108,7 @@ const FeaturedSlider: React.FC = () => {
       {/* Right Arrow */}
       <button
         onClick={handleNextSlide}
-        className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-2"
+        className="absolute top-1/2 right-2 md:right-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-1 md:p-2"
       >
         &#9654;
       </button>
