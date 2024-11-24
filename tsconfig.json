@@ -1,18 +1,18 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,
+    "target": "ES2020", // Use ES2020 for better async/await and other modern features
+    "lib": ["dom", "dom.iterable", "esnext"], 
+    "allowJs": true, 
+    "skipLibCheck": true, 
+    "strict": true, 
+    "noEmit": true, 
+    "esModuleInterop": true, 
+    "module": "esnext", 
+    "moduleResolution": "node", // Change "bundler" to "node" for better compatibility
+    "resolveJsonModule": true, 
+    "isolatedModules": true, 
+    "jsx": "preserve", 
+    "incremental": true, 
     "plugins": [
       {
         "name": "next"
@@ -23,7 +23,7 @@
     },
     "typeRoots": [
       "./node_modules/@types",
-      "./src/@types"  // Add this line to include your custom types
+      "./src/@types"
     ]
   },
   "include": [
@@ -32,7 +32,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/utils/fetchFeaturedPosts",
-    "src/@types"  // Ensure this line is included
-, "../Decode/11page.tsx"  ],
+    "src/@types"
+  ],
   "exclude": ["node_modules"]
 }

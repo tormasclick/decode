@@ -4,16 +4,16 @@ import Image from 'next/image';
 
 interface PostPageProps {
   params: {
-    id: string;
+    id: string; // This is the dynamic route parameter
   };
 }
 
 const PostPage = async ({ params }: PostPageProps) => {
-  const postId = Number(params.id); // Ensure the ID is a number
-  const post = await fetchSinglePost(postId);
+  const postId = Number(params.id); // Convert the id to a number
+  const post = await fetchSinglePost(postId); // Fetch the post
 
   if (!post) {
-    notFound(); // This will display the 404 page if no post is found
+    notFound(); // Show 404 page if no post is found
   }
 
   return (
