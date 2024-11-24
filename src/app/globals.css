@@ -97,3 +97,15 @@ html, body {
   outline: none !important;
   box-shadow: none !important;
 }
+html, body {
+  background-color: #ffffff; /* White background */
+  color: #2C324a; /* Ensure text color is set */
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure specific components or sections also have a white background */
+.container, .header, .footer, .main {
+  background-color: #ffffff; /* White background */
+}
+
