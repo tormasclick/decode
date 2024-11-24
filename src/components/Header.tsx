@@ -1,5 +1,3 @@
-// src/components/Header.tsx
-
 "use client"; // Ensure this is a client component
 
 import { useState } from 'react';
@@ -50,34 +48,34 @@ const Header = () => {
           <nav
             className={`${
               isMenuOpen ? 'block' : 'hidden'
-            } lg:flex lg:items-center lg:space-x-6 bg-[#2C324a] lg:bg-transparent absolute lg:relative top-0 lg:top-auto left-0 w-full lg:w-auto p-4 lg:p-0`}
+            } lg:flex lg:items-center lg:space-x-6 bg-white lg:bg-transparent absolute lg:relative top-0 lg:top-auto left-0 w-full lg:w-auto p-4 lg:p-0`}
           >
             <ul className="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-6">
-              <li className="flex items-center text-lg font-semibold text-black transition-colors duration-300 hover:text-[#33ff00]">
+              <li className="flex items-center text-lg font-semibold text-[#2C324a] transition-colors duration-300 hover:text-[#33ff00]">
                 <BiCompass className="mr-2" /> {/* Replace FaHome with BiCompass */}
                 <Link href="/discover" onClick={handleLinkClick}>Discover</Link>
               </li>
-              <li className="flex items-center text-lg font-semibold text-black transition-colors duration-300 hover:text-[#33ff00]">
+              <li className="flex items-center text-lg font-semibold text-[#2C324a] transition-colors duration-300 hover:text-[#33ff00]">
                 <FaHandshake className="mr-2" />
                 <Link href="/consultation" onClick={handleLinkClick}>Consultation</Link>
               </li>
-              <li className="flex items-center text-lg font-semibold text-black transition-colors duration-300 hover:text-[#33ff00]">
+              <li className="flex items-center text-lg font-semibold text-[#2C324a] transition-colors duration-300 hover:text-[#33ff00]">
                 <FaUsers className="mr-2" />
                 <Link href="/social-connect" onClick={handleLinkClick}>Social Connect</Link>
               </li>
-              <li className="flex items-center text-lg font-semibold text-black transition-colors duration-300 hover:text-[#33ff00]">
+              <li className="flex items-center text-lg font-semibold text-[#2C324a] transition-colors duration-300 hover:text-[#33ff00]">
                 <FaBook className="mr-2" />
                 <Link href="/resources" onClick={handleLinkClick}>Resources</Link>
               </li>
-              <li className="flex items-center text-lg font-semibold text-black transition-colors duration-300 hover:text-[#33ff00]">
+              <li className="flex items-center text-lg font-semibold text-[#2C324a] transition-colors duration-300 hover:text-[#33ff00]">
                 <FaGlobe className="mr-2" />
                 <Link href="/impact" onClick={handleLinkClick}>Impact</Link>
               </li>
-              <li className="flex items-center text-lg font-semibold text-black transition-colors duration-300 hover:text-[#33ff00]">
+              <li className="flex items-center text-lg font-semibold text-[#2C324a] transition-colors duration-300 hover:text-[#33ff00]">
                 <FaCalendarAlt className="mr-2" />
                 <Link href="/events" onClick={handleLinkClick}>Events</Link>
               </li>
-              <li className="flex items-center text-lg font-semibold text-black transition-colors duration-300 hover:text-[#33ff00]">
+              <li className="flex items-center text-lg font-semibold text-[#2C324a] transition-colors duration-300 hover:text-[#33ff00]">
                 <FaInfoCircle className="mr-2" />
                 <Link href="/about" onClick={handleLinkClick}>About</Link>
               </li>
