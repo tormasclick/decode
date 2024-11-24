@@ -10,9 +10,10 @@ interface Post {
 }
 
 type PostPageProps = {
-    params: { id: string };  // Define the params type
+    params: { id: string };  // Correctly define the params type
 };
 
+// Update this to be an async function that handles fetching based on the params
 const PostPage = async ({ params }: PostPageProps) => {
     const post: Post | null = await fetchSinglePost(Number(params.id)); // Fetch post data by ID
 
