@@ -1,6 +1,6 @@
 import React from 'react';
 import { fetchSinglePost } from '@/utils/fetchSinglePost';
-import Image from 'next/image'; // Import the Image component
+import Image from 'next/image';
 
 interface Post {
     id: number;
@@ -9,8 +9,11 @@ interface Post {
     featured_image: string;
 }
 
-const PostPage = async ({ params }: { params: { id: string } }) => {
-    // Use params directly as it is already resolved
+type PostPageProps = {
+    params: { id: string };  // Define the params type
+};
+
+const PostPage = async ({ params }: PostPageProps) => {
     const post: Post | null = await fetchSinglePost(Number(params.id)); // Fetch post data by ID
 
     if (!post) {
