@@ -3,6 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { fetchSinglePost } from '@/utils/fetchSinglePost';
+import Link from 'next/link';
+import { FaFacebook, FaTwitter, FaLinkedin } from 'react-icons/fa';
 
 interface Post {
     id: number;
@@ -31,15 +33,36 @@ const PostPage: React.FC = () => {
     if (loading) return <div className="text-center">Loading...</div>;
     if (!post) return <div className="text-center">Post not found</div>;
 
+    const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
+
     return (
-        <div className="my-6 p-6 bg-white rounded-lg shadow-md">
-            <h1 className="text-3xl font-bold mb-4">{post.title.rendered}</h1>
+        <div>
             {post.featured_image && (
-                <div className="mb-4">
-                    <img src={post.featured_image} alt={post.title.rendered} className="w-full h-auto rounded-lg shadow-md" />
+                <div
+                    className="relative w-full h-64 bg-cover bg-center flex flex-col items-center justify-center"
+                    style={{ backgroundImage: `url(${post.featured_image})` }}
+                >
+                    <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+                    <h1 className="relative text-white text-4xl font-bold z-10">{post.title.rendered}</h1>
+                    <nav className="relative text-white mt-2 z-10">
+                        <Link href="/" className="hover:text-gray-300">Home</Link> / <Link href="/posts" className="hover:text-gray-300">Posts</Link> / {post.title.rendered}
+                    </nav>
                 </div>
             )}
-            <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
+            <div className="container mx-auto p-6">
+                <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} className="prose lg:prose-xl mx-auto mb-6" />
+                <div className="flex justify-center space-x-4 mb-6">
+                    <a href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`} target="_blank" rel="noopener noreferrer">
+                        <FaFacebook className="text-blue-600 w-6 h-6" />
+                    </a>
+                    <a href={`https://twitter.com/intent/tweet?url=${shareUrl}`} target="_blank" rel="noopener noreferrer">
+                        <FaTwitter className="text-blue-400 w-6 h-6" />
+                    </a>
+                    <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`} target="_blank" rel="noopener noreferrer">
+                        <FaLinkedin className="text-blue-800 w-6 h-6" />
+                    </a>
+                </div>
+            </div>
         </div>
     );
 };
