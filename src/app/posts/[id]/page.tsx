@@ -12,8 +12,18 @@ interface Post {
 // Update the PageProps to be specific to Next.js's routing system
 interface PostPageProps {
     params: {
-        id: string;
+        id: string; // Dynamic route parameter
     };
+}
+
+// Using Static Site Generation (SSG) with generateStaticParams
+export async function generateStaticParams() {
+    // Fetch all posts or the required post IDs to pre-generate the static pages
+    const posts = await fetchAllPosts(); // Ensure this function returns the post data with an 'id'
+
+    return posts.map(post => ({
+        id: post.id.toString(), // Convert post ID to string for the dynamic route
+    }));
 }
 
 const PostPage = async ({ params }: PostPageProps) => {
