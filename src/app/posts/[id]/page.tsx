@@ -1,4 +1,5 @@
-import { fetchSinglePost } from '@/utils/fetchSinglePost'; // Make sure this function is properly defined
+import { GetServerSideProps } from 'next';
+import { fetchSinglePost } from '@/utils/fetchSinglePost';
 import Image from 'next/image';
 
 // Define the Post type
@@ -9,29 +10,28 @@ interface Post {
     featured_image: string;
 }
 
-// Update the PageProps to be specific to Next.js's routing system
+// Define the type for `PostPageProps`
 interface PostPageProps {
-    params: {
-        id: string; // Dynamic route parameter
-    };
+    post: Post;
 }
 
-// Using Static Site Generation (SSG) with generateStaticParams
-export async function generateStaticParams() {
-    // Fetch all posts or the required post IDs to pre-generate the static pages
-    const posts = await fetchAllPosts(); // Ensure this function returns the post data with an 'id'
-
-    return posts.map(post => ({
-        id: post.id.toString(), // Convert post ID to string for the dynamic route
-    }));
-}
-
-const PostPage = async ({ params }: PostPageProps) => {
-    const postId = Number(params.id); // Ensure the ID is converted to a number for backend queries
-    const post: Post | null = await fetchSinglePost(postId); // Fetch the post by ID
+// Refactor to use getServerSideProps
+export const getServerSideProps: GetServerSideProps<PostPageProps> = async ({ params }) => {
+    const postId = Number(params?.id); // Ensure the ID is a number
+    const post = await fetchSinglePost(postId);
 
     if (!post) {
-        return <div className="text-center">Post not found</div>;
+        return { notFound: true }; // Handle the case where the post doesn't exist
+    }
+
+    return {
+        props: { post }, // Return the post as props
+    };
+};
+
+const PostPage = ({ post }: PostPageProps) => {
+    if (!post) {
+        return <div>Post not found</div>;
     }
 
     return (
