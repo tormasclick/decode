@@ -1,10 +1,7 @@
-// src/components/AboutUs.tsx
-
 "use client";
 
 import React, { useEffect, useState } from "react";
 import { fetchPageData } from "../utils/fetchPageData";
-import Image from "next/image";
 
 interface PageData {
   title: string;
@@ -30,15 +27,21 @@ const AboutUs: React.FC = () => {
   return (
     <div className="container mx-auto px-8 lg:px-16 py-12 lg:py-20">
       <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-start">
-        {/* Left Side: Image */}
-        <div className="lg:w-1/2 w-full">
-          <Image
-            src={pageData.featuredImage || "/images/about2.jpg"} // Use 'about2.jpg' as fallback
-            alt="About Us Image"
-            width={600}
-            height={400}
-            className="w-full h-auto object-cover rounded-md"
-          />
+        {/* Left Side: Video */}
+        <div className="lg:w-1/2 w-full relative">
+          <div className="overflow-hidden rounded-md" style={{ height: "300px" }}>
+            <video
+              src="/videos/6608212-uhd_2160_4096_24fps.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+            >
+              {/* Fallback message for unsupported browsers */}
+              Your browser does not support the video tag.
+            </video>
+          </div>
         </div>
 
         {/* Right Side: Content */}
