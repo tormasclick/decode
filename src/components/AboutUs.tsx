@@ -31,13 +31,21 @@ const AboutUs: React.FC = () => {
         <div className="lg:w-1/2 w-full relative">
           <div className="overflow-hidden rounded-md" style={{ height: "300px" }}>
             <video
-              src="/videos/6608212-uhd_2160_4096_24fps.mp4"
               autoPlay
               loop
               muted
               playsInline
               className="w-full h-full object-cover"
+              poster="/images/video-placeholder.jpg" // Fallback image while loading
             >
+              <source
+                src="/videos/6608212-uhd_2160_4096_24fps.webm"
+                type="video/mp4"
+              />
+              <source
+                src="/videos/6608212-uhd_2160_4096_24fps.webm"
+                type="video/webm"
+              />
               {/* Fallback message for unsupported browsers */}
               Your browser does not support the video tag.
             </video>
