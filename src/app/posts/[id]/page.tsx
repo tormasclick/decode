@@ -1,4 +1,3 @@
-// src/app/posts/[id]/page.tsx
 import React from 'react';
 import { fetchSinglePost } from '@/utils/fetchSinglePost';
 import Image from 'next/image'; // Import the Image component
@@ -11,10 +10,8 @@ interface Post {
 }
 
 const PostPage = async ({ params }: { params: { id: string } }) => {
-    // Await params to get the resolved value
-    const { id } = await params; // Await the params to resolve its values
-
-    const post: Post | null = await fetchSinglePost(Number(id)); // Fetch post data by ID
+    // Use params directly as it is already resolved
+    const post: Post | null = await fetchSinglePost(Number(params.id)); // Fetch post data by ID
 
     if (!post) {
         return <div className="text-center">Post not found</div>;
