@@ -2,18 +2,16 @@ import { fetchSinglePost } from '@/utils/fetchSinglePost';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 
-interface PostPageProps {
-  params: {
-    id: string; // This is the dynamic route parameter
-  };
+interface PostProps {
+  params: { id: string }; // Ensure params match the dynamic segment
 }
 
-const PostPage = async ({ params }: PostPageProps) => {
-  const postId = Number(params.id); // Convert the id to a number
-  const post = await fetchSinglePost(postId); // Fetch the post
+const PostPage = async ({ params }: PostProps) => {
+  const postId = Number(params.id);
+  const post = await fetchSinglePost(postId);
 
   if (!post) {
-    notFound(); // Show 404 page if no post is found
+    notFound(); // Use Next.js's built-in `notFound` helper for 404 pages
   }
 
   return (
