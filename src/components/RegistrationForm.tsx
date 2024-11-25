@@ -3,7 +3,11 @@
 import React, { useState } from 'react';
 import { FaTimes } from 'react-icons/fa'; // Import close icon
 
-const RegistrationForm = ({ onClose }) => {
+interface RegistrationFormProps {
+    onClose: () => void;
+}
+
+const RegistrationForm: React.FC<RegistrationFormProps> = ({ onClose }) => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

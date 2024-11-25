@@ -10,7 +10,7 @@ import {
 import RegistrationForm from './RegistrationForm';
 import { BiCompass } from "react-icons/bi"; // Import BiCompass icon
 
-const Header = () => {
+const Header: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
