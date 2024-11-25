@@ -14,7 +14,9 @@ const BenefitsSection: React.FC = () => {
                 <li className="mb-2">Access to Resources: Connect with industry contacts, funding opportunities, and valuable tools.</li>
                 <li>Support for Scaling: Guidance on expanding your business across different African regions.</li>
             </ul>
-            <Link href="/get-started" className="mt-6 px-6 py-3 bg-[#33ff00] text-black rounded-full transition-colors duration-300 hover:bg-[#2C324a] hover:text-white inline-block">Get Started with a Free Consultation</Link>
+            <Link href="#contact2" legacyBehavior>
+                <a className="mt-6 px-6 py-3 bg-[#33ff00] text-black rounded-full transition-colors duration-300 hover:bg-[#2C324a] hover:text-white inline-block">Get Started with a Free Consultation</a>
+            </Link>
         </section>
     );
 };
