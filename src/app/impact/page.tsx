@@ -47,7 +47,7 @@ const ImpactPage: React.FC = () => {
       </div>
 
       {/* Impact Content */}
-      <section className="py-8 px-4 text-left max-w-3xl mx-auto">
+      <section className="py-8 px-4 text-left max-w-7xl mx-auto">
         <div dangerouslySetInnerHTML={{ __html: impact.content.rendered }} />
       </section>
     </div>

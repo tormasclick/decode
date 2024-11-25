@@ -64,7 +64,7 @@ const SocialConnectPage: React.FC = () => {
       {/* Social Connect Content */}
       <section className="py-8 px-4 text-left">
         <div
-          className="prose max-w-3xl mx-auto"
+          className="prose max-w-7xl mx-auto"
           dangerouslySetInnerHTML={{ __html: socialConnect.content.rendered }}
         />
       </section>

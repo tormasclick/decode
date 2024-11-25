@@ -50,55 +50,59 @@ const AboutPage: React.FC = () => {
 
       {/* About Us Content */}
       <section className="py-8 px-4 text-left items-left">
-        <div
-          className="prose max-w-3xl mx-auto"
-          dangerouslySetInnerHTML={{ __html: aboutUs.content.rendered }}
-        />
+          <div
+              className="max-w-7xl mx-auto"
+              dangerouslySetInnerHTML={{ __html: aboutUs.content.rendered }}
+          />
       </section>
 
       {/* Vision Section */}
-      <section className="py-8 px-4 bg-gray-100 flex flex-col md:flex-row items-center">
-        <div className="md:w-1/2 px-4">
-          <h2 className="text-3xl font-bold mb-4">{vision.title.rendered}</h2>
-          <div
-            className="prose text-left"
-            dangerouslySetInnerHTML={{ __html: vision.content.rendered }}
-          />
-        </div>
-        {vision.featured_image && (
-          <div className="md:w-1/2 p-4">
-            {/* Use Image component for optimization */}
-            <Image
-              src={vision.featured_image}
-              alt="Vision Image"
-              width={500} // Provide width
-              height={300} // Provide height
-              className="w-full h-auto rounded-lg"
+      <section className="py-8 px-4 bg-gray-100">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center">
+          <div className="md:w-1/2 px-4">
+            <h2 className="text-3xl font-bold mb-4">{vision.title.rendered}</h2>
+            <div
+              className="prose text-left"
+              dangerouslySetInnerHTML={{ __html: vision.content.rendered }}
             />
           </div>
-        )}
+          {vision.featured_image && (
+            <div className="md:w-1/2 p-4">
+              {/* Use Image component for optimization */}
+              <Image
+                src={vision.featured_image}
+                alt="Vision Image"
+                width={500} // Provide width
+                height={300} // Provide height
+                className="w-full h-auto rounded-lg object-cover" // Use object-cover to crop height
+              />
+            </div>
+          )}
+        </div>
       </section>
 
       {/* Mission Section */}
-      <section className="py-8 px-4 bg-white flex flex-col md:flex-row items-center">
-        {mission.featured_image && (
-          <div className="md:w-1/2 p-4 order-2 md:order-1">
-            {/* Use Image component for optimization */}
-            <Image
-              src={mission.featured_image}
-              alt="Mission Image"
-              width={500} // Provide width
-              height={300} // Provide height
-              className="w-full h-auto rounded-lg"
+      <section className="py-8 px-4 bg-white">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center">
+          {mission.featured_image && (
+            <div className="md:w-1/2 p-4 order-2 md:order-1">
+              {/* Use Image component for optimization */}
+              <Image
+                src={mission.featured_image}
+                alt="Mission Image"
+                width={500} // Provide width
+                height={300} // Provide height
+                className="w-full h-auto rounded-lg object-cover" // Use object-cover to crop height
+              />
+            </div>
+          )}
+          <div className="md:w-1/2 px-4 order-1 md:order-2">
+            <h2 className="text-3xl font-bold mb-4">{mission.title.rendered}</h2>
+            <div
+              className="prose text-left"
+              dangerouslySetInnerHTML={{ __html: mission.content.rendered }}
             />
           </div>
-        )}
-        <div className="md:w-1/2 px-4 order-1 md:order-2">
-          <h2 className="text-3xl font-bold mb-4">{mission.title.rendered}</h2>
-          <div
-            className="prose text-left"
-            dangerouslySetInnerHTML={{ __html: mission.content.rendered }}
-          />
         </div>
       </section>
     </div>
