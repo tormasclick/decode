@@ -3,7 +3,13 @@
 
 import React, { useEffect, useState } from "react";
 import { fetchPageContent } from "../../utils/fetchPageContent";
-import Link from 'next/link'; // Import Link from Next.js
+import HeroSection from "../../components/HeroSection";
+import AboutSection from "../../components/AboutSection";
+import BenefitsSection from "../../components/BenefitsSection";
+import HowItWorksSection from "../../components/HowItWorksSection";
+import TestimonialsSection from "../../components/TestimonialsSection";
+import FAQsSection from "../../components/FAQsSection";
+import ContactForm from "../../components/ContactForm";
 
 interface PageContent {
   title: { rendered: string };
@@ -25,31 +31,13 @@ const ConsultationPage: React.FC = () => {
 
   return (
     <div className="consultation-page">
-      {/* Breadcrumb Header with Page Title */}
-      <div
-        className="breadcrumb-header relative flex items-center justify-center text-center"
-        style={{
-          backgroundImage: `url(${consultation.featured_image})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          height: "300px",
-        }}
-      >
-        <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center">
-          <h1 className="text-4xl font-bold text-white">{consultation.title.rendered}</h1>
-          <nav className="text-white mt-2">
-            <Link href="/" className="hover:text-gray-300">Home</Link> / Consultation {/* Updated Link */}
-          </nav>
-        </div>
-      </div>
-
-      {/* Consultation Content */}
-      <section className="py-8 px-4 text-left">
-        <div
-          className="prose max-w-3xl mx-auto"
-          dangerouslySetInnerHTML={{ __html: consultation.content.rendered }}
-        />
-      </section>
+      <HeroSection />
+      <AboutSection />
+      <BenefitsSection />
+      <HowItWorksSection />
+      <TestimonialsSection />
+      <FAQsSection />
+      <ContactForm />
     </div>
   );
 };
