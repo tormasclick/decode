@@ -95,18 +95,7 @@ const Header = () => {
 
       {/* Modal for Signup */}
       {isModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white p-8 rounded shadow-lg w-96">
-            <h2 className="text-2xl font-bold mb-4">Sign Up</h2>
-            <RegistrationForm /> {/* Use the existing RegistrationForm component */}
-            <button
-              onClick={toggleModal}
-              className="mt-4 bg-gray-300 text-black font-bold py-2 px-4 rounded"
-            >
-              Close
-            </button>
-          </div>
-        </div>
+        <RegistrationForm onClose={toggleModal} />
       )}
     </>
   );
