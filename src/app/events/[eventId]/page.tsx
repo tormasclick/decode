@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation"; // Use useParams for dynamic route handling
 import { fetchEventById } from "../../../utils/fetchEventById"; // Import fetch function
-import { FaCalendarAlt, FaClock, FaMapMarkerAlt, FaUser, FaEnvelope, FaPhoneAlt } from "react-icons/fa"; // Import icons
+import { FaCalendarAlt, FaClock, FaMapMarkerAlt } from "react-icons/fa"; // Import icons
 import Link from "next/link";
 import { FacebookShareButton, TwitterShareButton, LinkedinShareButton, FacebookIcon, TwitterIcon, LinkedinIcon } from "react-share"; // Import share buttons
 
