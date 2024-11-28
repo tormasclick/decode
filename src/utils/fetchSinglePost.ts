@@ -1,5 +1,3 @@
-// src/utils/fetchSinglePost.ts
-
 export const fetchSinglePost = async (postId: number) => {
     try {
         const response = await fetch(`https://decode.tormasclick.co.ke/wp-json/wp/v2/posts/${postId}`);

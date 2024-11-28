@@ -98,7 +98,14 @@ html, body {
   outline: none !important;
   box-shadow: none !important;
 }
+/* Add margin between paragraphs and headers */
+.prose p {
+  margin-bottom: 1rem; /* You can adjust this value */
+}
 
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  margin-bottom: 0.75rem; /* Space below headers */
+}
 
 
 

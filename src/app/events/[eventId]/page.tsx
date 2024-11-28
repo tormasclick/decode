@@ -5,6 +5,7 @@ import { useParams } from "next/navigation"; // Use useParams for dynamic route 
 import { fetchEventById } from "../../../utils/fetchEventById"; // Import fetch function
 import { FaCalendarAlt, FaClock, FaMapMarkerAlt, FaUser, FaEnvelope, FaPhoneAlt } from "react-icons/fa"; // Import icons
 import Link from "next/link";
+import { FacebookShareButton, TwitterShareButton, LinkedinShareButton, FacebookIcon, TwitterIcon, LinkedinIcon } from "react-share"; // Import share buttons
 
 interface EventDetails {
   id: number;
@@ -70,12 +71,23 @@ const EventDetailsPage: React.FC = () => {
       </div>
 
       {/* Main Content */}
-      <section className="py-8 px-4 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Left Column: Venue and Map */}
-        <div className="space-y-6">
+      <section className="py-8 px-4 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+        {/* Left Column: Event Description (3/4 width) */}
+        <div className="col-span-3 space-y-8">
+          <div>
+            <h2 className="text-2xl font-semibold mb-4">Event Description</h2>
+            <div
+              className="prose max-w-full text-gray-700 space-y-4"
+              dangerouslySetInnerHTML={{ __html: event.description }}
+            />
+          </div>
+        </div>
+
+        {/* Right Column: Venue, Date, Time, Map (1/4 width, light grey background) */}
+        <div className="col-span-1 bg-gray-100 p-6 rounded-md space-y-6">
           {event.venue && (
             <div>
-              <h2 className="text-2xl font-semibold">Venue</h2>
+              <h2 className="text-xl font-semibold">Venue</h2>
               <div className="flex items-center">
                 <FaMapMarkerAlt className="text-[#2C324a] mr-3" size={20} />
                 <div>
@@ -86,7 +98,24 @@ const EventDetailsPage: React.FC = () => {
             </div>
           )}
           <div>
-            <h2 className="text-2xl font-semibold mb-2">Map</h2>
+            <h2 className="text-xl font-semibold mb-2">Date & Time</h2>
+            <div className="flex items-center">
+              <FaCalendarAlt className="text-[#2C324a] mr-3" size={20} />
+              <p className="text-gray-800 font-medium">
+                {new Date(event.start_date).toLocaleDateString()} -{" "}
+                {new Date(event.end_date).toLocaleDateString()}
+              </p>
+            </div>
+            <div className="flex items-center">
+              <FaClock className="text-[#2C324a] mr-3" size={20} />
+              <p className="text-gray-800 font-medium">
+                {new Date(event.start_date).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} -{" "}
+                {new Date(event.end_date).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+              </p>
+            </div>
+          </div>
+          <div>
+            <h2 className="text-xl font-semibold mb-2">Map</h2>
             {mapSrc ? (
               <iframe
                 src={mapSrc}
@@ -114,50 +143,44 @@ const EventDetailsPage: React.FC = () => {
             )}
           </div>
         </div>
+      </section>
 
-        {/* Right Column: Event Details */}
-        <div className="space-y-8">
-          <div className="space-y-4">
-            <div className="flex items-center">
-              <FaCalendarAlt className="text-[#2C324a] mr-3" size={20} />
-              <p className="text-gray-800 font-medium">
-                {new Date(event.start_date).toLocaleDateString()} -{" "}
-                {new Date(event.end_date).toLocaleDateString()}
-              </p>
-            </div>
-            <div className="flex items-center">
-              <FaClock className="text-[#2C324a] mr-3" size={20} />
-              <p className="text-gray-800 font-medium">
-                {new Date(event.start_date).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} -{" "}
-                {new Date(event.end_date).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
-              </p>
-            </div>
-          </div>
-          {event.organizer && (
-            <div className="space-y-4">
-              <div className="flex items-center">
-                <FaUser className="text-[#2C324a] mr-3" size={20} />
-                <p className="text-gray-800 font-medium">{event.organizer.name}</p>
-              </div>
-              {event.organizer.phone && (
-                <div className="flex items-center">
-                  <FaPhoneAlt className="text-[#2C324a] mr-3" size={20} />
-                  <p className="text-gray-800 font-medium">{event.organizer.phone}</p>
-                </div>
-              )}
-              <div className="flex items-center">
-                <FaEnvelope className="text-[#2C324a] mr-3" size={20} />
-                <p className="text-gray-800 font-medium">{event.organizer.email}</p>
-              </div>
-            </div>
-          )}
-          <div>
-            <h2 className="text-2xl font-semibold mb-4">Description</h2>
-            <div
-              className="prose max-w-full text-gray-700"
-              dangerouslySetInnerHTML={{ __html: event.description }}
-            />
-          </div>
+      {/* Add to Calendar Section (Full width, centered) */}
+      <section className="py-8 px-4 text-center">
+        <h2 className="text-2xl font-semibold mb-4">Add to Calendar</h2>
+        <div className="space-x-4">
+          <a
+            href={`https://calendar.google.com/calendar/r/eventedit?text=${encodeURIComponent(event.title)}&dates=${new Date(event.start_date).toISOString().replace(/-|:|\.\d+/g, "")}/${new Date(event.end_date).toISOString().replace(/-|:|\.\d+/g, "")}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+          >
+            Add to Google Calendar
+          </a>
+          <a
+            href={`https://calendar.yahoo.com/?v=60&view=d&type=20&title=${encodeURIComponent(event.title)}&st=${new Date(event.start_date).toISOString().replace(/-|:|\.\d+/g, "")}&et=${new Date(event.end_date).toISOString().replace(/-|:|\.\d+/g, "")}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600"
+          >
+            Add to iCalendar
+          </a>
+        </div>
+      </section>
+
+      {/* Share Section (Full width, centered) */}
+      <section className="py-8 px-4 text-center">
+        <h2 className="text-2xl font-semibold mb-4">Share this Event</h2>
+        <div className="flex justify-center space-x-4">
+          <FacebookShareButton url={window.location.href} quote={event.title}>
+            <FacebookIcon size={32} round />
+          </FacebookShareButton>
+          <TwitterShareButton url={window.location.href} title={event.title}>
+            <TwitterIcon size={32} round />
+          </TwitterShareButton>
+          <LinkedinShareButton url={window.location.href} title={event.title}>
+            <LinkedinIcon size={32} round />
+          </LinkedinShareButton>
         </div>
       </section>
     </div>
