@@ -172,7 +172,7 @@ const EventDetailsPage: React.FC = () => {
       <section className="py-8 px-4 text-center">
         <h2 className="text-2xl font-semibold mb-4">Share this Event</h2>
         <div className="flex justify-center space-x-4">
-          <FacebookShareButton url={window.location.href} quote={event.title}>
+          <FacebookShareButton url={window.location.href}>
             <FacebookIcon size={32} round />
           </FacebookShareButton>
           <TwitterShareButton url={window.location.href} title={event.title}>
